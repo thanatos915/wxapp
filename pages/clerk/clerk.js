@@ -56,17 +56,17 @@ Page({
                         order_no: t.data.order.order_no
                     },
                     success: function(e) {
-                        0 == e.code ? getApp().core.redirectTo({
-                            url: "/pages/user/user"
+                        0 == e.code ? getApp().core.navigateBack({
+                            delta: "1"
                         }) : getApp().core.showModal({
                             title: "警告！",
                             showCancel: !1,
                             content: e.msg,
                             confirmText: "确认",
                             success: function(e) {
-                                e.confirm && getApp().core.redirectTo({
-                                    url: "/pages/index/index"
-                                });
+                                e.confirm && getApp().core.navigateBack({
+                                    delta: 1
+                                })
                             }
                         });
                     },

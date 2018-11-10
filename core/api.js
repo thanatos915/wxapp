@@ -53,6 +53,7 @@ var e = require("../siteinfo.js"), r = "", o = {
         comment: r + "order/comment",
         express_detail: r + "order/express-detail",
         clerk: r + "order/clerk",
+
         clerk_detail: r + "order/clerk-detail",
         get_qrcode: r + "order/get-qrcode",
         location: r + "order/location",
@@ -88,6 +89,9 @@ var e = require("../siteinfo.js"), r = "", o = {
         authorization_bind: r + "user/authorization-bind",
         check_bind: r + "user/check-bind",
         card_detail: r + "user/card-detail"
+    },
+    shop: {
+        index: r+ "shop/index",
     },
     share: {
         join: r + "share/join",

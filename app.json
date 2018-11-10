@@ -38,6 +38,7 @@
         "pages/member/member",
         "pages/web/web",
         "pages/shop/shop",
+        "pages/myshop/index/index",
         "pages/shop-detail/shop-detail",
         "pages/card/card",
         "pages/card-clerk/card-clerk",
