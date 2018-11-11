@@ -27,6 +27,10 @@ var e = require("../siteinfo.js"), r = "", o = {
         search: r + "default/search",
         cats: r + "default/cats"
     },
+    dingshi: {
+        cat_list: r + 'dingshi/cat-list',
+        goods_list: r + 'dingshi/goods-list'
+    },
     cart: {
         list: r + "cart/list",
         add_cart: r + "cart/add-cart",
@@ -92,6 +96,7 @@ var e = require("../siteinfo.js"), r = "", o = {
     },
     shop: {
         index: r+ "shop/index",
+        account: r + 'shop/account'
     },
     share: {
         join: r + "share/join",

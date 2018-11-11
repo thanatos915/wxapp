@@ -39,10 +39,10 @@
             </view>
             <view class="flex-grow-0 menu-item">
                 <form bindsubmit="navigatorSubmit" reportSubmit="true">
-                    <input name="url" style="display: none" value="/pages/myshop/cash/cash"></input>
+                    <input name="url" style="display: none" value="/pages/myshop/account/account"></input>
                     <button class="block-button" formType="submit">
                         <image src="/mch/images/menu-5.png"></image>
-                        <view>提现</view>
+                        <view>资产</view>
                     </button>
                 </form>
             </view>

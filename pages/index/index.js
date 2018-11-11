@@ -55,6 +55,13 @@ Page({
             success: function(t) {
                 0 == t.code && (e ? e = !1 : t.data.act_modal_list = [], a.setData(t.data), getApp().core.setStorageSync(getApp().const.PAGE_INDEX_INDEX, t.data), 
                 a.miaoshaTimer());
+                a.goodsAll({
+                    currentTarget: {
+                        dataset: {
+                            index: 0
+                        }
+                    }
+                })
             },
             complete: function() {
                 getApp().core.stopPullDownRefresh();
@@ -216,5 +223,66 @@ Page({
     },
     fullscreenchange: function(t) {
         i = !!t.detail.fullScreen;
-    }
+    },
+    goodsAll: function(a) {
+        var e = this, s = a.currentTarget.dataset.index, c = e.data.cat_list, i = null;
+        for (var o in c) o == s ? (c[o].active = !0, i = c[o]) : c[o].active = !1;
+        if (e.setData({
+            page: 1,
+            goods_list: [],
+            show_no_data_tip: !1,
+            cat_list: c,
+            current_cat: i
+        }), void 0 === ("undefined" == typeof my ? "undefined" : t(my))) {
+            var n = a.currentTarget.offsetLeft, r = e.data.scrollLeft;
+            r = n - 80, e.setData({
+                scrollLeft: r
+            });
+        } else c.forEach(function(t, s, i) {
+            t.id == a.currentTarget.id && (s >= 1 ? e.setData({
+                toView: c[s - 1].id
+            }) : e.setData({
+                toView: c[s].id
+            }));
+        });
+        e.list(i.id, 1), getApp().core.createSelectorQuery().select("#catall").boundingClientRect().exec(function(t) {
+            e.setData({
+                height: t[0].height
+            });
+        });
+    },
+    list: function(t, e) {
+        var s = this;
+        getApp().core.showLoading({
+            title: "正在加载",
+            mask: !0
+        }), a = !1;
+        var c = s.data.page || 2;
+        getApp().request({
+            url: getApp().api.dingshi.goods_list,
+            data: {
+                cat_id: t,
+                page: c
+            },
+            success: function(e) {
+                0 == e.code && (getApp().core.hideLoading(), 0 == e.data.list.length && (a = !0),
+                    s.setData({
+                        page: c + 1
+                    }), s.setData({
+                    goods_list: e.data.list
+                }), s.setData({
+                    cat_id: t
+                })), s.setData({
+                    show_no_data_tip: 0 == s.data.goods_list.length
+                });
+            },
+            complete: function() {
+                1 == e && getApp().core.createSelectorQuery().select("#catall").boundingClientRect().exec(function(t) {
+                    s.setData({
+                        height: t[0].height
+                    });
+                });
+            }
+        });
+    },
 });

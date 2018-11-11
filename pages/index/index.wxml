@@ -13,7 +13,7 @@
             <template is="coupon" data="{{__wxapp_img:__wxapp_img,coupon_list:coupon_list,update_list:update_list,item:item}}" wx:elif="{{item.name=='coupon'}}"></template>
             <template is="cat" data="{{cat_list:cat_list,__wxapp_img:__wxapp_img,cat_goods_cols:cat_goods_cols,__is_sales:__is_sales,cat_item:item}}" wx:elif="{{item.name=='cat'||item.name=='single_cat'}}"></template>
             <template is="miaosha" data="{{__wxapp_img:__wxapp_img,miaosha:miaosha,item:item}}" wx:elif="{{item.name=='miaosha'}}"></template>
-            <template is="dingshi" data="{{__wxapp_img:__wxapp_img,miaosha:miaosha,item:item}}" wx:elif="{{item.name=='dingshi'}}"></template>
+            <template is="dingshi" data="{{__wxapp_img:__wxapp_img,cat_list:cat_list, goods_list: goods_list}}" wx:elif="{{item.name=='dingshi'}}"></template>
             <template is="pintuan" data="{{__wxapp_img:__wxapp_img,pintuan:pintuan,item:item}}" wx:elif="{{item.name=='pintuan'}}"></template>
             <template is="yuyue" data="{{__wxapp_img:__wxapp_img,yuyue:yuyue,item:item}}" wx:elif="{{item.name=='yuyue'}}"></template>
             <template is="video" data="{{__wxapp_img:__wxapp_img,update_list:update_list,video_item:item,play:play}}" wx:elif="{{item.name=='video'}}"></template>

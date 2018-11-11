@@ -94,7 +94,7 @@ Page({
                             showCancel: !1,
                             success: function(a) {
                                 a.confirm && 0 == e.code && getApp().core.redirectTo({
-                                    url: "/pages/cash-detail/cash-detail"
+                                    url: "/pages/myshop/cash-detail/cash-detail"
                                 });
                             }
                         });
