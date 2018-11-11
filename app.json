@@ -39,6 +39,7 @@
         "pages/web/web",
         "pages/shop/shop",
         "pages/myshop/index/index",
+        "pages/myshop/cash/cash",
         "pages/shop-detail/shop-detail",
         "pages/card/card",
         "pages/card-clerk/card-clerk",
