@@ -11,6 +11,7 @@ Page({
         },
         tab_detail: "active",
         tab_comment: "",
+        tab_history: "",
         comment_list: [],
         comment_count: {
             score_all: 0,
@@ -494,6 +495,7 @@ Page({
     },
     tabSwitch: function(t) {
         var a = this;
+        console.log(t.currentTarget.dataset.tab)
         "detail" == t.currentTarget.dataset.tab ? a.setData({
             tab_detail: "active",
             tab_comment: ""

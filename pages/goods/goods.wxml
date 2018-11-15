@@ -124,8 +124,11 @@
                         <view bindtap="tabSwitch" class="flex-grow-1 flex-x-center tab-group-item {{tab_detail}}" data-tab="detail">
                             <text class="flex-y-center">商品详情</text>
                         </view>
-                        <view bindtap="tabSwitch" class="flex-grow-1 flex-x-center tab-group-item {{tab_comment}}" data-tab="comment" wx:if="{{__is_comment}}">
+                        <!-- <view bindtap="tabSwitch" class="flex-grow-1 flex-x-center tab-group-item {{tab_comment}}" data-tab="comment" wx:if="{{__is_comment}}">
                             <text class="flex-y-center">评价</text>
+                        </view> -->
+                        <view bindtap="tabSwitch" class="flex-grow-1 flex-x-center tab-group-item {{tab_comment}}" data-tab="comment" wx:if="{{__is_comment}}">
+                            <text class="flex-y-center">购买记录</text>
                         </view>
                     </view>
                     <view class="tab-group-body">
@@ -134,7 +137,7 @@
                                 <template is="wxParse" data="{{wxParseData:detail.nodes}}"></template>
                             </view>
                         </view>
-                        <view class="tab-group-item {{tab_comment}}">
+                        <!-- <view class="tab-group-item {{tab_comment}}">
                             <view class="comment-count flex-row">
                                 <view class="comment-count-item flex-grow-1 flex-x-center flex-col">
                                     <view>全部</view>
@@ -172,6 +175,18 @@
                                         </view>
                                     </view>
                                 </view>
+                            </view>
+                        </view> -->
+                        <view class="tab-group-item {{tab_comment}}">
+                            <view class="comment-list history-list">
+                                <view class='history-item' wx:for="{{comment_list}}" wx:key="{{item.id}}">
+                                  <image class='history-item-imgs' src="{{item.avatar_url}}"></image>
+                                </view>
+                                <!-- <view class="comment-item flex-row" wx:for="{{comment_list}}" wx:key="{{item.id}}">
+                                    <view class="flex-grow-0" style="overflow: visible">
+                                        <image mode="aspectFill" src="{{item.avatar_url}}" style="width: 70rpx;height: 70rpx;border-radius: 1000rpx"></image>
+                                    </view>
+                                </view> -->
                             </view>
                         </view>
                     </view>

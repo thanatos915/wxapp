@@ -675,3 +675,20 @@ view {
     font-size: 13px;
     color: #707070;
 }
+
+/* history-list 购买记录 */
+.history-list { 
+  overflow: hidden;
+  padding: 20rpx 10rpx 0 10rpx;
+}
+.history-item {
+  float: left;
+}
+.history-item-imgs {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin: 0 10rpx 10rpx 10rpx;
+  background: #ccc;
+}

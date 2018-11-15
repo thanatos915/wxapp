@@ -274,8 +274,8 @@
                         <navigator class="option-item flex-grow-0 style navigator-hover" url="/pages/myshop/index/index" wx:if="{{user_info.is_shop_admin == 1}}">
                             <view>
                                 <view class="flex-x-center">
-                                    <image class="option-icon"
-                                           src="http://api.shop.com/web/statics/images/user-center/icon-user-mch.png"></image>
+                                    <!-- <image class="option-icon"
+                                           src="http://api.shop.com/web/statics/images/user-center/icon-user-mch.png"></image> -->
                                 </view>
                                 <view class="text-more-2" style="text-align: center">我的门店</view>
                             </view>
