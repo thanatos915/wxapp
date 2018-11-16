@@ -40,6 +40,7 @@
         "pages/shop/shop",
         "pages/myshop/index/index",
         "pages/myshop/account/account",
+        "pages/myshop/account-log/account-log",
         "pages/myshop/cash/cash",
         "pages/myshop/cash-detail/cash-detail",
         "pages/shop-detail/shop-detail",

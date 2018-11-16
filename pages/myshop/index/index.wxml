@@ -46,6 +46,15 @@
                     </button>
                 </form>
             </view>
+            <view class="flex-grow-0 menu-item">
+                <form bindsubmit="navigatorSubmit" reportSubmit="true">
+                    <input name="url" style="display: none" value="/pages/myshop/send/send"></input>
+                    <button class="block-button" formType="submit">
+                        <image src="/mch/images/menu-2.png"></image>
+                        <view>今日配货</view>
+                    </button>
+                </form>
+            </view>
             <!--
             <view class="flex-grow-0 menu-item">
                 <form bindsubmit="navigatorSubmit" reportSubmit="true">
