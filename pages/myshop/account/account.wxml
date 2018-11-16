@@ -15,21 +15,12 @@
             </view>
         </view>
         <view class="menu-group">
-            <navigator class="menu-item flex flex-row" url="/mch/m/account-rest/account-rest" wx:if="{{false}}">
-                <view class="flex-grow-1 flex flex-row">
-                    <view class="flex-grow-1 flex-y-center">待结算金额</view>
-                    <view class="flex-grow-0 flex-y-center">￥{{rest_money}}</view>
-                </view>
+            <navigator class="menu-item flex flex-row" url="/pages/myshop/account-log/account-log">
+                <view class="flex-grow-1 flex flex-row flex-y-center">分润记录</view>
                 <view class="flex-grow-0 flex-y-center">
                     <image class="pointer" src="/mch/images/icon-jiantou-you.png"></image>
                 </view>
             </navigator>
-            <!--<navigator class="menu-item flex flex-row" url="/mch/m/account-log/account-log">-->
-                <!--<view class="flex-grow-1 flex flex-row flex-y-center">收支记录</view>-->
-                <!--<view class="flex-grow-0 flex-y-center">-->
-                    <!--<image class="pointer" src="/mch/images/icon-jiantou-you.png"></image>-->
-                <!--</view>-->
-            <!--</navigator>-->
             <navigator class="menu-item flex flex-row" url="/pages/myshop/cash-detail/cash-detail">
                 <view class="flex-grow-1 flex flex-row flex-y-center">提现记录</view>
                 <view class="flex-grow-0 flex-y-center">
