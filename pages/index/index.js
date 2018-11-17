@@ -14,10 +14,6 @@ Page({
     },
     onLoad: function(a) {
         getApp().page.onLoad(this, a), this.loadData(a), t.init(this);
-        const that = this
-        setTimeout(function(){
-          console.log(that.goods_list)
-        },1000)
     },
     suspension: function() {
         var t = this;

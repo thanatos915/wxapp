@@ -1,0 +1,21 @@
+<!--pages/order-list/order-list.wxml-->
+<view class='page'>
+  <view class="table">
+    <view class='tr'>
+      <view class='th td-4'>产品</view>
+      <view class='th td-6'>购买记录</view>
+      <view class='th td-4'>总计</view>
+    </view>
+    <block wx:for="{{shop.list}}">
+      <view class="tr">
+        <view class="td td-4">{{item.name}}</view>
+        <view class="td td-6">
+          <block wx:for="{{item.buys}}" wx:for-item="buy">
+            <view>{{buy.username}} X {{buy.num}} 份<br /></view>
+          </block>
+        </view>
+        <view class="td td-4">{{item.num}}</view>
+      </view>
+    </block>
+  </view>
+</view>

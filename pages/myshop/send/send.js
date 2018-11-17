@@ -7,29 +7,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listData: [
-      { 
-        "code": "01", 
-        "text": [
-          'text1',
-          'text2'
-        ] 
-      },
-      { 
-        "code": "02", 
-        "text": [
-          'text2',
-          'text1'
-        ] 
-      }
-    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (t) {
+      getApp().page.onLoad(this, t);
+      var e = this;
+      getApp().core.showLoading({
+          title: "加载中"
+      }), getApp().request({
+          url: getApp().api.shop.send,
+          success: function(t) {
+              getApp().core.hideLoading(), 0 !== t.code && getApp().core.showModal({
+                  title: "提示",
+                  content: "请求信息出错，请稍候重试",
+                  showCancel: !1,
+                  success: function(t) {
+                      t.confirm && getApp().core.navigateBack();
+                  }
+              }), e.setData(t.data), e.setData({
+                  is_show: !0
+              }), 1 == t.code && getApp().core.redirectTo({
+                  url: "/pages/user/user"
+              });
+          }
+      });
   },
 
   /**

@@ -2,11 +2,6 @@
     <include src="/components/common/common"></include>
     <include src="/components/header/header"></include>
     <view class="body after-navber">
-        <view class="flex-grow-0 flex-y-center userinfo-addr">
-            <navigator class="my-address flex-y-center" url="../order-list/order-list">
-                <text>新增页面</text>
-            </navigator>
-        </view>
         <view class="page {{__page_classes}}">
             <view class="body after-navber">
                 <view style="position:relative;">
@@ -279,8 +274,8 @@
                         <navigator class="option-item flex-grow-0 style navigator-hover" url="/pages/myshop/index/index" wx:if="{{user_info.is_shop_admin == 1}}">
                             <view>
                                 <view class="flex-x-center">
-                                    <!-- <image class="option-icon"
-                                           src="http://api.shop.com/web/statics/images/user-center/icon-user-mch.png"></image> -->
+                                     <image class="option-icon"
+                                           src="http://www.zhongmai.pro/web/statics/images/user-center/icon-user-mch.png"></image>
                                 </view>
                                 <view class="text-more-2" style="text-align: center">我的门店</view>
                             </view>
