@@ -287,9 +287,9 @@ Page({
                                   let date3 = date2 % (60 * 1000)
                                   let second = Math.round(date3 / 1000)
                                   let str = hours + '小时' + min + '分钟' + second + '秒'
-                                  item.end_time = str
+                                  item.time = str
                                 } else {
-                                  item.end_time = '0小时0分钟0秒'
+                                  item.time = '0小时0分钟0秒'
                                   clearInterval(o)
                                 }
                                 return item.end_time != ''
