@@ -279,7 +279,7 @@ Page({
                         var o = setInterval(function() {
                             list = e.data.list.filter(item => {
                                 // item.end_time = 1542710115000
-                                let date = new Date(item.end_time) - new Date()
+                                let date = new Date(item.end_time*1000) - new Date()
                                 if (date > 0) {
                                   let hours = Math.floor(date / (3600 * 1000))
                                   let date2 = date % (3600 * 1000)
