@@ -14,6 +14,10 @@ Page({
     },
     onLoad: function(a) {
         getApp().page.onLoad(this, a), this.loadData(a), t.init(this);
+        const that = this
+        setTimeout(function(){
+          console.log(that.goods_list)
+        },1000)
     },
     suspension: function() {
         var t = this;
@@ -230,6 +234,7 @@ Page({
         if (e.setData({
             page: 1,
             goods_list: [],
+            list: [],
             show_no_data_tip: !1,
             cat_list: c,
             current_cat: i
@@ -265,11 +270,34 @@ Page({
                 page: c
             },
             success: function(e) {
+                
+                // goods_list: list
                 0 == e.code && (getApp().core.hideLoading(), 0 == e.data.list.length && (a = !0),
                     s.setData({
                         page: c + 1
                     }), s.setData({
-                    goods_list: e.data.list
+                        // goods_list: e.data.list
+                        // setInterval(function() {
+                          goods_list: e.data.list.filter(item => {
+                            item.end_time = 1542710115000
+                            let date = new Date(item.end_time) - new Date()
+                            let hours = Math.floor(date / (3600 * 1000))
+                            let date2 = date % (3600 * 1000)
+                            let min = Math.floor(date2 / (60 * 1000))
+                            let date3 = date2 % (60 * 1000)
+                            let second = Math.round(date3 / 1000)
+                            let str = hours + '.' + min + '.' + second
+                            item.end_time = str
+                            return item.end_time != ''
+                          })
+                        // }, 1000)
+                    // goods_list: e.data.list.map(item=>{
+                    //   console.log(item.end_time)
+                    //   var date = new Date(item.end_time)
+                    //   var date2 = `${date.getFullYear()}:${(date.getMonth() + 1).toString().padStart(2, '0')}:${date.getDate()}:${date.getMinutes()}:${date.getSeconds()}`
+                    //   console.log(date2)
+                    //   item.end_time = '----'
+                    // })
                 }), s.setData({
                     cat_id: t
                 })), s.setData({
@@ -284,5 +312,5 @@ Page({
                 });
             }
         });
-    },
+    }
 });

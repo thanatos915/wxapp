@@ -3,6 +3,7 @@
     <include src="/components/common/common"></include>
     <include src="/components/header/header"></include>
     <include src="/components/quick-navigation/quick-navigation.wxml"></include>
+    
     <view class="body">
         <include src="/components/specifications_model/specifications_model.wxml"></include>
         <include src="/components/goods/specifications_model.wxml"></include>

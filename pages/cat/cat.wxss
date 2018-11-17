@@ -225,9 +225,8 @@
   padding: 20rpx;
 }
 .goods-item {
-  width: 48.5%;
-  border-radius: 5rpx;
-    /* display: inline-block; */
+    width: 48.5%;
+    border-radius: 5rpx;
     position: relative;
     background: #fff;
     margin-bottom: 20rpx;

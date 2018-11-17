@@ -2,6 +2,11 @@
     <include src="/components/common/common"></include>
     <include src="/components/header/header"></include>
     <view class="body after-navber">
+        <view class="flex-grow-0 flex-y-center userinfo-addr">
+            <navigator class="my-address flex-y-center" url="../order-list/order-list">
+                <text>新增页面</text>
+            </navigator>
+        </view>
         <view class="page {{__page_classes}}">
             <view class="body after-navber">
                 <view style="position:relative;">

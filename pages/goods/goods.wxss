@@ -676,7 +676,7 @@ view {
     color: #707070;
 }
 
-/* history-list 购买记录 */
+/* 购买记录 history-list*/
 .history-list { 
   overflow: hidden;
   padding: 20rpx 10rpx 0 10rpx;

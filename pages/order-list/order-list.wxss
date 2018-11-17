@@ -1,0 +1,42 @@
+/* pages/order-list/order-list.wxss */
+.table {
+  border: 0px solid darkgray;
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  /* line-height: 2rem; */
+  align-items: center;
+}
+.td {
+    justify-content: center;
+    text-align: center;
+    padding: 5rpx 10rpx;
+}
+.td-span {
+  display: block;
+  line-height: 1;
+  padding: 5rpx;
+}
+.td-4 {
+  width:40%;
+}
+.td-6 {
+  width: 60%;
+}
+.bg-w{
+  background: snow;
+}
+.bg-g{
+  background: #E6F3F9;
+}
+.th {
+  width: 40%;
+  justify-content: center;
+  background: #3366FF;
+  color: #fff;
+  display: flex;
+  /* height: 2rem; */
+  align-items: center;
+}
