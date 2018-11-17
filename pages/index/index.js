@@ -273,24 +273,52 @@ Page({
                 
                 // goods_list: list
                 0 == e.code && (getApp().core.hideLoading(), 0 == e.data.list.length && (a = !0),
+                    function () {
+                        console.log('sss')
+                        var list = []
+                        var o = setInterval(function() {
+                            list = e.data.list.filter(item => {
+                                // item.end_time = 1542710115000
+                                let date = new Date(item.end_time) - new Date()
+                                if (date > 0) {
+                                  let hours = Math.floor(date / (3600 * 1000))
+                                  let date2 = date % (3600 * 1000)
+                                  let min = Math.floor(date2 / (60 * 1000))
+                                  let date3 = date2 % (60 * 1000)
+                                  let second = Math.round(date3 / 1000)
+                                  let str = hours + '小时' + min + '分钟' + second + '秒'
+                                  item.end_time = str
+                                } else {
+                                  item.end_time = '0小时0分钟0秒'
+                                  clearInterval(o)
+                                }
+                                return item.end_time != ''
+                            })
+                            console.log(list)
+
+                            s.setData({
+                                goods_list: list
+                            })
+                        }, 1000)
+                    }(),
                     s.setData({
                         page: c + 1
                     }), s.setData({
                         // goods_list: e.data.list
-                        // setInterval(function() {
-                          goods_list: e.data.list.filter(item => {
-                            item.end_time = 1542710115000
-                            let date = new Date(item.end_time) - new Date()
-                            let hours = Math.floor(date / (3600 * 1000))
-                            let date2 = date % (3600 * 1000)
-                            let min = Math.floor(date2 / (60 * 1000))
-                            let date3 = date2 % (60 * 1000)
-                            let second = Math.round(date3 / 1000)
-                            let str = hours + '.' + min + '.' + second
-                            item.end_time = str
-                            return item.end_time != ''
-                          })
-                        // }, 1000)
+                        // // setInterval(function() {
+                        //   goods_list: e.data.list.filter(item => {
+                        //     item.end_time = 1542710115000
+                        //     let date = new Date(item.end_time) - new Date()
+                        //     let hours = Math.floor(date / (3600 * 1000))
+                        //     let date2 = date % (3600 * 1000)
+                        //     let min = Math.floor(date2 / (60 * 1000))
+                        //     let date3 = date2 % (60 * 1000)
+                        //     let second = Math.round(date3 / 1000)
+                        //     let str = hours + '.' + min + '.' + second
+                        //     item.end_time = str
+                        //     return item.end_time != ''
+                        //   })
+                        // // }, 1000)
                     // goods_list: e.data.list.map(item=>{
                     //   console.log(item.end_time)
                     //   var date = new Date(item.end_time)

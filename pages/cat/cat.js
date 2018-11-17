@@ -12,7 +12,7 @@ Page({
         page: 1,
         cat_style: 0,
         height: 0,
-        catheight: 120
+        catheight: 100
     },
     onLoad: function(t) {
         var a = this;

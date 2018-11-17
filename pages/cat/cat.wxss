@@ -166,7 +166,9 @@
     top: 0;
     z-index: 9999;
     border-bottom: 1rpx solid #e2e2e2;
-    height: 66rpx;
+    height: 96rpx;
+    /* margin-top: -15rpx;
+    position: relative; */
 }
 
 .scroll-view-x .scroll-view-item {
@@ -174,6 +176,8 @@
     padding: 0rpx 26rpx;
     color: #666666;
     height: 66rpx;
+    margin: 15rpx;
+    border-radius: 25rpx;
     line-height: 66rpx;
     white-space: nowrap;
 }

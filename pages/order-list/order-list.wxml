@@ -1,6 +1,10 @@
 <!--pages/order-list/order-list.wxml-->
 <view class='page'>
   <view class="table">
+    <view class='tr'>
+      <view class='th td-4'>表头</view>
+      <view class='th td-6'>表头</view>
+    </view>
     <block wx:for="{{listData}}" wx:key="{{code}}">
       <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
         <view class="td td-4">{{item.code}}</view>
