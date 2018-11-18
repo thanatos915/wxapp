@@ -29,7 +29,10 @@ var e = require("../siteinfo.js"), r = "", o = {
     },
     dingshi: {
         cat_list: r + 'dingshi/cat-list',
-        goods_list: r + 'dingshi/goods-list'
+        goods_list: r + 'dingshi/goods-list',
+        details: r + "dingshi/details",
+        record_list: r + "dingshi/record-list",
+        submit_preview: r + "dingshi/submit-preview",
     },
     cart: {
         list: r + "cart/list",

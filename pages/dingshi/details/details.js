@@ -2,7 +2,7 @@ var t = require("../../../utils/helper.js"), a = require("../../../components/qu
 
 Page({
     data: {
-        pageType: "MIAOSHA",
+        pageType: "dingshi",
         id: null,
         goods: {},
         show_attr_picker: !1,
@@ -23,7 +23,7 @@ Page({
         show: !1,
         x: getApp().core.getSystemInfoSync().windowWidth,
         y: getApp().core.getSystemInfoSync().windowHeight - 20,
-        miaosha_end_time_over: {
+        dingshi_end_time_over: {
             h: "--",
             m: "--",
             s: "--",
@@ -49,13 +49,13 @@ Page({
             id: e.id,
             scene_type: c,
             goods_id: e.goods_id
-        }), u.getGoods(), u.getCommentList();
+        }), u.getGoods(), u.getRecordList();
     },
     getGoods: function() {
         var t = this, a = {};
-        t.data.id && (a.id = t.data.id), t.data.goods_id && (a.goods_id = t.datat.goods_id), 
+        t.data.goods_id && (a.goods_id = t.data.goods_id),
         a.scene_type = t.data.scene_type, getApp().request({
-            url: getApp().api.miaosha.details,
+            url: getApp().api.dingshi.details,
             data: a,
             success: function(a) {
                 if (0 == a.code) {
@@ -66,10 +66,10 @@ Page({
                     o.pic_list = s, t.setData({
                         goods: o,
                         attr_group_list: a.data.attr_group_list,
-                        miaosha_data: a.data.miaosha.miaosha_data
+                        dingshi_data: a.data.dingshi.dingshi_data
                     }), 1 == t.data.scene_type && t.setData({
-                        id: a.data.miaosha.miaosha_goods_id
-                    }), t.data.goods.miaosha && t.setMiaoshaTimeOver(), t.selectDefaultAttr();
+                        id: a.data.dingshi.dingshi_goods_id
+                    }), t.data.goods.dingshi && t.setdingshiTimeOver(), t.selectDefaultAttr();
                 }
                 1 == a.code && getApp().core.showModal({
                     title: "提示",
@@ -93,18 +93,34 @@ Page({
             });
         }
     },
-    getCommentList: function(t) {
+    // getCommentList: function(t) {
+    //     var a = this;
+    //     t && "active" != a.data.tab_comment || r || n && (r = !0, getApp().request({
+    //         url: getApp().api.dingshi.comment_list,
+    //         data: {
+    //             goods_id: a.data.id,
+    //             page: s
+    //         },
+    //         success: function(e) {
+    //             0 == e.code && (r = !1, s++, a.setData({
+    //                 comment_count: e.data.comment_count,
+    //                 comment_list: t ? a.data.comment_list.concat(e.data.list) : e.data.list
+    //             }), 0 == e.data.list.length && (n = !1));
+    //         }
+    //     }));
+    // },
+    getRecordList: function(t) {
         var a = this;
-        t && "active" != a.data.tab_comment || r || n && (r = !0, getApp().request({
-            url: getApp().api.miaosha.comment_list,
+        t || r || n && (r = !0, getApp().request({
+            url: getApp().api.dingshi.record_list,
             data: {
-                goods_id: a.data.id,
+                goods_id: a.data.goods_id,
                 page: s
             },
             success: function(e) {
                 0 == e.code && (r = !1, s++, a.setData({
-                    comment_count: e.data.comment_count,
-                    comment_list: t ? a.data.comment_list.concat(e.data.list) : e.data.list
+                    record_count: e.data.record_count,
+                    record_list: t ? a.data.record_list.concat(e.data.list) : e.data.list
                 }), 0 == e.data.list.length && (n = !1));
             }
         }));
@@ -120,8 +136,8 @@ Page({
     },
     numberAdd: function() {
         var t = this, a = t.data.form.number;
-        if (++a > t.data.goods.miaosha.buy_max && 0 != t.data.goods.miaosha.buy_max) return getApp().core.showToast({
-            title: "一单限购" + t.data.goods.miaosha.buy_max,
+        if (++a > t.data.goods.dingshi.buy_max && 0 != t.data.goods.dingshi.buy_max) return getApp().core.showToast({
+            title: "一单限购" + t.data.goods.dingshi.buy_max,
             image: "/images/icon-warning.png"
         }), !0;
         t.setData({
@@ -132,10 +148,10 @@ Page({
     },
     numberBlur: function(t) {
         var a = this, e = t.detail.value;
-        e = parseInt(e), isNaN(e) && (e = 1), e <= 0 && (e = 1), e > a.data.goods.miaosha.buy_max && 0 != a.data.goods.miaosha.buy_max && (getApp().core.showToast({
-            title: "一单限购" + a.data.goods.miaosha.buy_max + "件",
+        e = parseInt(e), isNaN(e) && (e = 1), e <= 0 && (e = 1), e > a.data.goods.dingshi.buy_max && 0 != a.data.goods.dingshi.buy_max && (getApp().core.showToast({
+            title: "一单限购" + a.data.goods.dingshi.buy_max + "件",
             image: "/images/icon-warning.png"
-        }), e = a.data.goods.miaosha.buy_max), a.setData({
+        }), e = a.data.goods.dingshi.buy_max), a.setData({
             form: {
                 number: e
             }
@@ -145,7 +161,7 @@ Page({
         this.submit("ADD_CART");
     },
     buyNow: function() {
-        this.data.goods.miaosha ? this.submit("BUY_NOW") : getApp().core.showModal({
+        this.data.goods.dingshi ? this.submit("BUY_NOW") : getApp().core.showModal({
             title: "提示",
             content: "秒杀商品当前时间暂无活动",
             showCancel: !1,
@@ -157,11 +173,11 @@ Page({
         if (!a.data.show_attr_picker) return a.setData({
             show_attr_picker: !0
         }), !0;
-        if (a.data.miaosha_data && a.data.miaosha_data.rest_num > 0 && a.data.form.number > a.data.miaosha_data.rest_num) return getApp().core.showToast({
+        if (a.data.dingshi_data && a.data.dingshi_data.rest_num > 0 && a.data.form.number > a.data.dingshi_data.rest_num) return getApp().core.showToast({
             title: "商品库存不足，请选择其它规格或数量",
             image: "/images/icon-warning.png"
         }), !0;
-        if (1e3 * this.data.goods.miaosha.begin_time > Date.parse(new Date())) return getApp().core.showToast({
+        if (1e3 * this.data.goods.dingshi.begin_time > Date.parse(new Date())) return getApp().core.showToast({
             title: "活动未开始",
             image: "/images/icon-warning.png"
         }), !0;
@@ -197,9 +213,10 @@ Page({
             url: getApp().api.cart.add_cart,
             method: "POST",
             data: {
-                goods_id: a.data.id,
+                goods_id: a.data.goods_id,
                 attr: JSON.stringify(o),
                 num: a.data.form.number,
+                source: 1 // 标识定时购商品
             },
             success: function(t) {
                 getApp().core.showToast({
@@ -212,8 +229,8 @@ Page({
         })), "BUY_NOW" == t && (a.setData({
             show_attr_picker: !1
         }), getApp().core.redirectTo({
-            url: "/pages/miaosha/order-submit/order-submit?goods_info=" + JSON.stringify({
-                goods_id: a.data.id,
+            url: "/pages/order-submit/order-submit?goods_info=" + JSON.stringify({
+                goods_id: a.data.goods_id,
                 attr: o,
                 num: a.data.form.number
             })
@@ -298,13 +315,13 @@ Page({
         getApp().page.onPullDownRefresh(this);
     },
     onReachBottom: function(t) {
-        getApp().page.onReachBottom(this), this.getCommentList(!0);
+        getApp().page.onReachBottom(this), this.getRecordList(!0);
     },
     onShareAppMessage: function(t) {
         getApp().page.onShareAppMessage(this);
         var a = this, e = getApp().getUser();
         return {
-            path: "/pages/miaosha/details/details?id=" + this.data.id + "&user_id=" + e.id,
+            path: "/pages/dingshi/details/details?id=" + this.data.id + "&user_id=" + e.id,
             success: function(t) {
                 1 == ++d && getApp().shareSendCoupon(a);
             },
@@ -353,7 +370,7 @@ Page({
             share_modal_active: ""
         }), t.data.goods_qrcode) return !0;
         getApp().request({
-            url: getApp().api.miaosha.goods_qrcode,
+            url: getApp().api.default.goods_qrcode,
             data: {
                 goods_id: t.data.id
             },
@@ -436,12 +453,12 @@ Page({
             get_coupon_list: ""
         });
     },
-    setMiaoshaTimeOver: function() {
+    setdingshiTimeOver: function() {
         function t() {
-            var t = e.data.goods.miaosha.end_time - e.data.goods.miaosha.now_time;
-            t = t < 0 ? 0 : t, e.data.goods.miaosha.now_time++, e.setData({
+            var t = e.data.goods.dingshi.end_time - e.data.goods.dingshi.now_time;
+            t = t < 0 ? 0 : t, e.data.goods.dingshi.now_time++, e.setData({
                 goods: e.data.goods,
-                miaosha_end_time_over: a(t)
+                dingshi_end_time_over: a(t)
             });
         }
         function a(t) {

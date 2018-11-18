@@ -270,7 +270,6 @@ Page({
                 // goods_list: list
                 0 == e.code && (getApp().core.hideLoading(), 0 == e.data.list.length && (a = !0),
                     function () {
-                        console.log('sss')
                         var list = []
                         var o = setInterval(function() {
                             list = e.data.list.filter(item => {
@@ -290,7 +289,6 @@ Page({
                                 }
                                 return item.end_time != ''
                             })
-                            console.log(list)
 
                             s.setData({
                                 goods_list: list

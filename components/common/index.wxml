@@ -371,7 +371,7 @@
     </view>
     <view class="goods-list">
         <view class="no-data-tip" wx:if="{{show_no_data_tip}}">该类目暂无内容</view>
-        <navigator class="goods-item" openType="navigate" url="/pages/goods/goods?id={{item.id}}" wx:for="{{goods_list}}" wx:key="{{item.id}}">
+        <navigator class="goods-item" openType="navigate" url="/pages/dingshi/details/details?goods_id={{item.id}}" wx:for="{{goods_list}}" wx:key="{{item.id}}">
             <image class="goods-pic" mode="aspectFill" src="{{item.pic_url}}"></image>
             <view class="goods-list-time">距结束 {{item.time}}</view>
             <view class="goods-info" style="padding:5rpx 20rpx 15rpx;">
