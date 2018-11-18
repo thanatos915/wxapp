@@ -346,31 +346,37 @@ Page({
     submit: function(t, e) {
         var a = this;
         var event = e;
+        console.log(event);
         a.data.goods_list.forEach(item => {
             if (item.id == event.target.dataset.goodsId) {
-                a.setData({
-                    goods: item,
-                    attr_group_list: item.attr_group_list,
-                    dingshi_data: item.dingshi.dingshi_data,
-                    form: {number: 1}
-                });
-                a.selectDefaultAttr();
-                if (!item.show_attr_picker) return a.setData({
-                    show_attr_picker: !0
-                }), !0;
-                if (item.dingshi_data && item.dingshi_data.rest_num > 0 && item.form.number > item.dingshi_data.rest_num) return getApp().core.showToast({
+                if (!a.data.show_attr_picker) {
+                    a.setData({
+                        show_attr_picker: !0
+                    }), !0;
+                    a.setData({
+                        temp_goods_id: item.id,
+                        goods: item,
+                        attr_group_list: item.attr_group_list,
+                        dingshi_data: item.dingshi.dingshi_data,
+                        form: {number: 1}
+                    });
+                    a.selectDefaultAttr();
+                    return;
+                }
+
+                if (a.data.dingshi_data && a.data.dingshi_data.rest_num > 0 && a.data.form.number > a.data.dingshi_data.rest_num) return getApp().core.showToast({
                     title: "商品库存不足，请选择其它规格或数量",
                     image: "/images/icon-warning.png"
                 }), !0;
-                if (1e3 * this.data.goods.dingshi.begin_time > Date.parse(new Date())) return getApp().core.showToast({
+                if (1e3 * a.data.goods.dingshi.begin_time > Date.parse(new Date())) return getApp().core.showToast({
                     title: "活动未开始",
                     image: "/images/icon-warning.png"
                 }), !0;
-                if (item.form.number > item.goods.num) return getApp().core.showToast({
+                if (a.data.form.number > a.data.goods.num) return getApp().core.showToast({
                     title: "商品库存不足，请选择其它规格或数量",
                     image: "/images/icon-warning.png"
                 }), !0;
-                var e = item.attr_group_list, o = [];
+                var e = a.data.attr_group_list, o = [];
                 for (var i in e) {
                     var s = !1;
                     for (var r in e[i].attr_list) if (e[i].attr_list[r].checked) {
@@ -398,9 +404,9 @@ Page({
                     url: getApp().api.cart.add_cart,
                     method: "POST",
                     data: {
-                        goods_id: item.goods_id,
+                        goods_id: item.id,
                         attr: JSON.stringify(o),
-                        num: item.form.number,
+                        num: a.data.form.number,
                         source: 1 // 标识定时购商品
                     },
                     success: function(t) {
@@ -415,9 +421,9 @@ Page({
                     show_attr_picker: !1
                 }), getApp().core.redirectTo({
                     url: "/pages/order-submit/order-submit?goods_info=" + JSON.stringify({
-                        goods_id: item.goods_id,
+                        goods_id: item.id,
                         attr: o,
-                        num: item.form.number
+                        num: a.data.form.number
                     })
                 }));
             }

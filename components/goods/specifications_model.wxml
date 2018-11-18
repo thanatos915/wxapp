@@ -1,4 +1,4 @@
-<view class="attr-picker" wx:if="{{show_attr_picker}}">
+<view class="attr-picker" style="z-index: 999999999" wx:if="{{show_attr_picker}}">
 <!-- 首页的时候 attr-picker 这个class 帮定一个style="z-index: 999999999" 即可 -->
     <view class="content-box">
         <view class="flex-row" style="border-bottom: 1rpx solid #e3e3e3;padding: 24rpx 28rpx">
@@ -67,11 +67,5 @@
                 </view>
             </view>
         </scroll-view>
-        <view class="flex-row bar-bottom">
-                <view class="flex-grow-1 flex-row">
-                    <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center add-cart">加入购物车</view>
-                    <view bindtap="buyNow" class="flex-grow-1 flex-y-center flex-x-center buy-now">立即购买</view>
-                </view>
-            </view>
     </view>
 </view>

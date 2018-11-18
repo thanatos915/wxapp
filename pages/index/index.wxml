@@ -25,6 +25,11 @@
         </block>
         <template is="act-modal" data="{{__wxapp_img:__wxapp_img,act_modal_list:act_modal_list}}" wx:if="{{act_modal_list&&act_modal_list.length>0}}"></template>
     </view>
+    <view class="flex-row bar-bottom" style="z-index: 9999999" wx:if="{{show_attr_picker}}">
+        <view class="flex-grow-1 flex-row">
+            <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center buy-now" data-goods-id="{{temp_goods_id}}">确定</view>
+        </view>
+    </view>
     <include src="/components/quick-navigation/quick-navigation.wxml"></include>
     <include src="/components/footer/footer"></include>
 </view>
