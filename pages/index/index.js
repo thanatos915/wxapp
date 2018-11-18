@@ -1,4 +1,4 @@
-var t = require("./../../components/quick-navigation/quick-navigation.js"), a = 0, e = !0, o = 1, i = !1;
+var t = require("./../../components/quick-navigation/quick-navigation.js"), o = require("./../../components/goods/specifications_model.js"), e = !0, a = 0, i = !1;
 
 Page({
     data: {
@@ -10,7 +10,12 @@ Page({
         play: -1,
         time: 0,
         buy: !1,
-        opendate: !1
+        opendate: !1,
+        show_attr_picker: !1,
+        goods: {},
+        form: {
+            number: 1
+        },
     },
     onLoad: function(a) {
         getApp().page.onLoad(this, a), this.loadData(a), t.init(this);
@@ -334,5 +339,140 @@ Page({
                 });
             }
         });
-    }
+    },
+    addCart: function(e) {
+        this.submit("ADD_CART", e);
+    },
+    submit: function(t, e) {
+        var a = this;
+        var event = e;
+        a.data.goods_list.forEach(item => {
+            if (item.id == event.target.dataset.goodsId) {
+                a.setData({
+                    goods: item,
+                    attr_group_list: item.attr_group_list,
+                    dingshi_data: item.dingshi.dingshi_data,
+                    form: {number: 1}
+                });
+                a.selectDefaultAttr();
+                if (!item.show_attr_picker) return a.setData({
+                    show_attr_picker: !0
+                }), !0;
+                if (item.dingshi_data && item.dingshi_data.rest_num > 0 && item.form.number > item.dingshi_data.rest_num) return getApp().core.showToast({
+                    title: "商品库存不足，请选择其它规格或数量",
+                    image: "/images/icon-warning.png"
+                }), !0;
+                if (1e3 * this.data.goods.dingshi.begin_time > Date.parse(new Date())) return getApp().core.showToast({
+                    title: "活动未开始",
+                    image: "/images/icon-warning.png"
+                }), !0;
+                if (item.form.number > item.goods.num) return getApp().core.showToast({
+                    title: "商品库存不足，请选择其它规格或数量",
+                    image: "/images/icon-warning.png"
+                }), !0;
+                var e = item.attr_group_list, o = [];
+                for (var i in e) {
+                    var s = !1;
+                    for (var r in e[i].attr_list) if (e[i].attr_list[r].checked) {
+                        s = {
+                            attr_id: e[i].attr_list[r].attr_id,
+                            attr_name: e[i].attr_list[r].attr_name
+                        };
+                        break;
+                    }
+                    if (!s) return getApp().core.showToast({
+                        title: "请选择" + e[i].attr_group_name,
+                        image: "/images/icon-warning.png"
+                    }), !0;
+                    o.push({
+                        attr_group_id: e[i].attr_group_id,
+                        attr_group_name: e[i].attr_group_name,
+                        attr_id: s.attr_id,
+                        attr_name: s.attr_name
+                    });
+                }
+                "ADD_CART" == t && (getApp().core.showLoading({
+                    title: "正在提交",
+                    mask: !0
+                }), getApp().request({
+                    url: getApp().api.cart.add_cart,
+                    method: "POST",
+                    data: {
+                        goods_id: item.goods_id,
+                        attr: JSON.stringify(o),
+                        num: item.form.number,
+                        source: 1 // 标识定时购商品
+                    },
+                    success: function(t) {
+                        getApp().core.showToast({
+                            title: t.msg,
+                            duration: 1500
+                        }), getApp().core.hideLoading(), a.setData({
+                            show_attr_picker: !1
+                        });
+                    }
+                })), "BUY_NOW" == t && (a.setData({
+                    show_attr_picker: !1
+                }), getApp().core.redirectTo({
+                    url: "/pages/order-submit/order-submit?goods_info=" + JSON.stringify({
+                        goods_id: item.goods_id,
+                        attr: o,
+                        num: item.form.number
+                    })
+                }));
+            }
+        });
+        return;
+    },
+    hideAttrPicker: function() {
+        this.setData({
+            show_attr_picker: !1
+        });
+    },
+    showAttrPicker: function() {
+        this.setData({
+            show_attr_picker: !0
+        });
+    },
+    selectDefaultAttr: function() {
+        var t = this;
+        if (t.data.goods && 0 === t.data.goods.use_attr) {
+            for (var a in t.data.attr_group_list) for (var e in t.data.attr_group_list[a].attr_list) 0 == a && 0 == e && (t.data.attr_group_list[a].attr_list[e].checked = !0);
+            t.setData({
+                attr_group_list: t.data.attr_group_list
+            });
+        }
+    },
+    numberSub: function() {
+        var t = this, a = t.data.form.number;
+        if (a <= 1) return !0;
+        a--, t.setData({
+            form: {
+                number: a
+            }
+        });
+    },
+    numberAdd: function() {
+        var t = this, a = t.data.form.number;
+        if (++a > t.data.goods.dingshi.buy_max && 0 != t.data.goods.dingshi.buy_max) return getApp().core.showToast({
+            title: "一单限购" + t.data.goods.dingshi.buy_max,
+            image: "/images/icon-warning.png"
+        }), !0;
+        t.setData({
+            form: {
+                number: a
+            }
+        });
+    },
+    numberBlur: function(t) {
+        var a = this, e = t.detail.value;
+        e = parseInt(e), isNaN(e) && (e = 1), e <= 0 && (e = 1), e > a.data.goods.dingshi.buy_max && 0 != a.data.goods.dingshi.buy_max && (getApp().core.showToast({
+            title: "一单限购" + a.data.goods.dingshi.buy_max + "件",
+            image: "/images/icon-warning.png"
+        }), e = a.data.goods.dingshi.buy_max), a.setData({
+            form: {
+                number: e
+            }
+        });
+    },
 });

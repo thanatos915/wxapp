@@ -1,4 +1,5 @@
 @import "../../components/quick-navigation/quick-navigation.wxss";
+@import "../../components/goods/specifications_model.wxss";
 
 .banner {
     height: 360rpx;
@@ -1124,4 +1125,27 @@
 
 .goods-list-item-del {
   text-decoration: line-through;
+}
+.number-input-box {
+    height: 70rpx;
+}
+
+.number-input-box .number-input {
+    height: 70rpx!important;
+    border: none;
+    text-align: center;
+    width: 120rpx;
+    background: #eee;
+    margin: 0 4rpx!important;
+}
+
+.number-input-box .number-btn {
+    height: 100%!important;
+    width: 70rpx;
+    background: #eee;
+}
+
+.number-input-box .number-btn.disabled {
+    background: #f6f6f6;
+    color: #aaa;
 }

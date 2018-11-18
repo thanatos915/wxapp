@@ -3,6 +3,7 @@
     <include src="/components/common/common"></include>
     <include src="/components/header/header"></include>
     <view class="body after-navber">
+        <include src="/components/goods/specifications_model.wxml"></include>
         <template is="buy-data" data="{{buy:buy}}"></template>
         <block wx:for="{{module_list}}" wx:key="{{item.id}}">
             <template is="notice" data="{{notice:notice,update_list:update_list,__wxapp_img:__wxapp_img,show_notice:show_notice,item:item}}" wx:if="{{item.name=='notice'}}"></template>
