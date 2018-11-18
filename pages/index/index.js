@@ -16,6 +16,7 @@ Page({
         form: {
             number: 1
         },
+        intervalArr: []
     },
     onLoad: function(a) {
         getApp().page.onLoad(this, a), this.loadData(a), t.init(this);
@@ -259,6 +260,12 @@ Page({
     },
     list: function(t, e) {
         var s = this;
+
+        // 取消
+        s.data.intervalArr.forEach(item => {
+            clearInterval(item)
+        });
+
         getApp().core.showLoading({
             title: "正在加载",
             mask: !0
@@ -299,6 +306,7 @@ Page({
                                 goods_list: list
                             })
                         }, 1000)
+                        s.data.intervalArr.push(o);
                     }(),
                     s.setData({
                         page: c + 1

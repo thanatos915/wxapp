@@ -381,7 +381,7 @@
                         <block wx:if="{{item.is_negotiable!=1}}">￥</block>{{item.price}}
                     </view>
                     <view class="flex-grow-1 fs-sm goods-list-item-desc goods-list-item-del">
-                        <text>市场价：{{item.price}}</text>
+                        <text>市场价：{{item.original_price}}</text>
                     </view>
                     <view class="flex-grow-1 fs-sm goods-list-item-desc">已售:{{item.sales}}</view>
                     <view class='flex-grow-2 fs-sm goods-list-item-cart'>
