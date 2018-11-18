@@ -180,14 +180,17 @@
                         </view> -->
                         <view class="tab-group-item {{tab_comment}}">
                             <view class="comment-list history-list">
-                                <view class='history-item' wx:for="{{comment_list}}" wx:key="{{item.id}}">
-                                  <image class='history-item-imgs' src="{{item.avatar_url}}"></image>
-                                </view>
-                                <!-- <view class="comment-item flex-row" wx:for="{{comment_list}}" wx:key="{{item.id}}">
-                                    <view class="flex-grow-0" style="overflow: visible">
-                                        <image mode="aspectFill" src="{{item.avatar_url}}" style="width: 70rpx;height: 70rpx;border-radius: 1000rpx"></image>
+                                <view class='history-row' wx:for="{{comment_list}}" wx:key="{{item.id}}">
+                                  <!-- <image class='history-row-item-' src="{{item.avatar_url}}"></image> -->
+                                  <view class='history-row-item'>
+                                    <image class='history-row-item-imgs' src="{{item.avatar_url}}"></image>
+                                    <text class='history-row-item-names'>姓名</text>
+                                    <view class='history-row-item-times'>
+                                      买了<text class='history-row-item-em'>1</text>份
                                     </view>
-                                </view> -->
+                                    <text class='history-row-item-times'>2018.11.18 21:42:28</text>
+                                  </view>
+                                </view>
                             </view>
                         </view>
                     </view>

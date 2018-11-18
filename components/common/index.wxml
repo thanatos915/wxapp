@@ -385,7 +385,7 @@
                     </view>
                     <view class="flex-grow-1 fs-sm goods-list-item-desc">已售:{{item.sales}}</view>
                     <view class='flex-grow-2 fs-sm goods-list-item-cart'>
-                      <view catchtap="addCart" data-goods-id="{{item.id}}" style='opacity: 100'>加入购物车</view>
+                      <view catchtap="addCart" data-goods-id="{{item.id}}" style='font-size: 22rpx;'>加入购物车</view>
                     </view>
                 </view>
             </view>

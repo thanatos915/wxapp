@@ -480,6 +480,7 @@ view {
 .history-list {
     overflow: hidden;
     padding: 20rpx 10rpx 0 10rpx;
+    background: #fff;
 }
 .history-item {
     float: left;
@@ -491,4 +492,36 @@ view {
     border: 1px solid #ccc;
     margin: 0 10rpx 10rpx 10rpx;
     background: #ccc;
+}
+
+.history-row-item {
+  display: flex;
+  align-items: center;
+  padding: 0 10rpx;
+  font-size: 24rpx;
+}
+.history-row-item .history-row-item-imgs {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin: 0 10rpx 10rpx 10rpx;
+  background: #ccc;
+}
+.history-row-item .history-row-item-names {
+  padding: 0 15rpx;
+}
+
+.history-row-item .history-row-item-nums {
+  padding: 0 15rpx;
+}
+
+.history-row-item .history-row-item-em {
+  color: red;
+}
+
+.history-row-item .history-row-item-times {
+  font-size: 22rpx;
+  color: #ccc;
+  padding: 0 15rpx;
 }
