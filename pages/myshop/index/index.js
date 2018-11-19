@@ -51,9 +51,9 @@ Page({
         wx.scanCode({
             onlyFromCamera: true,
             success (res) {
-                var order_no = res.result;
+                var url = res.path;
                 getApp().core.redirectTo({
-                    url: '/pages/clerk/clerk?scene=' + order_no
+                    url: '/' + url
                 });
                 // 查询订单
                 /*

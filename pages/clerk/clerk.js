@@ -32,7 +32,7 @@ Page({
                     confirmText: "确认",
                     success: function(e) {
                         e.confirm && getApp().core.redirectTo({
-                            url: "/pages/index/index"
+                            url: "/pages/myshop/index/index"
                         });
                     }
                 });
