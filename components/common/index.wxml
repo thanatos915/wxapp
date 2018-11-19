@@ -371,6 +371,9 @@
     </view>
     <view class="goods-list">
         <view class="no-data-tip" wx:if="{{show_no_data_tip}}">该类目暂无内容</view>
+        <view class='goods-list-title'>
+          <text class='goods-list-h2'>限时抢购</text>
+        </view>
         <navigator class="goods-item" openType="navigate" url="/pages/dingshi/details/details?goods_id={{item.id}}" wx:for="{{goods_list}}" wx:key="{{item.id}}">
             <image class="goods-pic" mode="aspectFill" src="{{item.pic_url}}"></image>
             <view class="goods-list-time">距结束 {{item.time}}</view>
@@ -383,9 +386,11 @@
                     <view class="flex-grow-1 fs-sm goods-list-item-desc goods-list-item-del">
                         <text>市场价：{{item.original_price}}</text>
                     </view>
-                    <view class="flex-grow-1 fs-sm goods-list-item-desc">还剩{{item.num}}{{item.unit}} /已售:{{item.sales}}</view>
-                    <view class='flex-grow-2 fs-sm goods-list-item-cart'>
-                      <view catchtap="addCart" data-goods-id="{{item.id}}" style='font-size: 22rpx;'>加入购物车</view>
+                    <view class="flex-grow-1 fs-sm goods-list-item-desc">已售:{{item.sales}}</view>
+                    <view class='flex-grow-2 fs-sm' style='padding: 0 20rpx;'>
+                      <view class='goods-list-item-cart'>
+                        <view catchtap="addCart" class="carts" data-goods-id="{{item.id}}" style='font-size: 0rpx;'>加入购物车</view>
+                      </view>
                     </view>
                 </view>
             </view>
