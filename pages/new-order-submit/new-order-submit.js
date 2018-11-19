@@ -54,10 +54,10 @@ Page({
     },
     dingwei: function() {
         var a = this;
-        getApp().core.chooseLocation({
+        getApp().core.getLocation({
             success: function(i) {
                 t = i.longitude, e = i.latitude, a.setData({
-                    location: i.address
+                    // location: i.address
                 }), a.getOrderData(a.data.options);
             },
             fail: function(t) {

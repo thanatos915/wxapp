@@ -125,7 +125,7 @@
                         </view>
                         <view bindtap="{{item.shop_list.length>1?'showShop':''}}" class="flex-row border-bottom" data-index="{{index}}" style="background: #fff;padding: 24rpx">
                             <view class="flex-grow-0" style="width:160rpx;">
-                                <view>门店信息</view>
+                                <view>驿站信息</view>
                             </view>
                             <view class="flex-grow-1" style="text-align:right">
                                 <view>{{item.shop.name}}</view>
@@ -224,6 +224,7 @@
         </view>
         <view class="coupon-picker" style="background-color:#f7f7f7;" wx:if="{{show_shop}}">
             <scroll-view class="coupon-list" scrollY="true" style="height: 100%;padding:0;">
+                <!--
                 <view class="shop-block flex-y-center">当前地址</view>
                 <view class="shop-address flex-row flex-y-center">
                     <view class="flex-grow-1">{{location}}</view>
@@ -231,8 +232,8 @@
                         <image src="{{__wxapp_img.shop.dingwei.url}}" style="width:32rpx;height:32rpx;margin-right:2rpx;"></image>
                         <text style="color:#2495ff">手动定位</text>
                     </view>
-                </view>
-                <view class="shop-block flex-y-center">门店列表（仅展示您最近的30家门店）</view>
+                </view>-->
+                <view class="shop-block flex-y-center">驿站列表（仅展示您最近的30家驿站）</view>
                 <view bindtap="pickShop" class="flex-row address-picker" data-index="{{index}}" style="margin:0;" wx:for="{{shop_list}}" wx:key="{{item.id}}">
                     <view class="flex-grow-0 flex-y-center">
                         <image lazyLoad="true" mode="aspectFit" src="{{item.id==shop.id?'/images/icon-shop-checked.png':'/images/icon-shop-un.png'}}" style="width: 40rpx;height: 40rpx;margin-right: 20rpx"></image>
