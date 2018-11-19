@@ -473,7 +473,7 @@ Page({
         }
         function a(t) {
             var a = parseInt(t / 3600), e = parseInt(t % 3600 / 60), o = t % 60, i = 0;
-            return a >= 1 && (a -= 1, i = 1), {
+            return a >= 1, {
                 h: a < 10 ? "0" + a : "" + a,
                 m: e < 10 ? "0" + e : "" + e,
                 s: o < 10 ? "0" + o : "" + o,

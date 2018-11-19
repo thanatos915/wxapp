@@ -383,7 +383,7 @@
                     <view class="flex-grow-1 fs-sm goods-list-item-desc goods-list-item-del">
                         <text>市场价：{{item.original_price}}</text>
                     </view>
-                    <view class="flex-grow-1 fs-sm goods-list-item-desc">已售:{{item.sales}}</view>
+                    <view class="flex-grow-1 fs-sm goods-list-item-desc">还剩{{item.num}}{{item.unit}} /已售:{{item.sales}}</view>
                     <view class='flex-grow-2 fs-sm goods-list-item-cart'>
                       <view catchtap="addCart" data-goods-id="{{item.id}}" style='font-size: 22rpx;'>加入购物车</view>
                     </view>
