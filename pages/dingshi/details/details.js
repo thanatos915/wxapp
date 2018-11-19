@@ -46,7 +46,7 @@ Page({
         }
         var u = this;
         u.setData({
-            id: e.id,
+            // id: e.id,
             scene_type: c,
             goods_id: e.goods_id
         }), u.getGoods(), u.getRecordList();
@@ -103,7 +103,7 @@ Page({
     //         },
     //         success: function(e) {
     //             0 == e.code && (r = !1, s++, a.setData({
-    //                 comment_count: e.data.comment_count,
+    //                 comment_count: e.data.cgoods_omment_count,
     //                 comment_list: t ? a.data.comment_list.concat(e.data.list) : e.data.list
     //             }), 0 == e.data.list.length && (n = !1));
     //         }
@@ -119,7 +119,7 @@ Page({
             },
             success: function(e) {
                 0 == e.code && (r = !1, s++, a.setData({
-                    record_count: e.data.record_count,
+                    record_count: e.data.row_count,
                     record_list: t ? a.data.record_list.concat(e.data.list) : e.data.list
                 }), 0 == e.data.list.length && (n = !1));
             }
@@ -206,35 +206,45 @@ Page({
                 attr_name: s.attr_name
             });
         }
-        "ADD_CART" == t && (getApp().core.showLoading({
+        if ("ADD_CART" == t && (getApp().core.showLoading({
             title: "正在提交",
             mask: !0
         }), getApp().request({
             url: getApp().api.cart.add_cart,
             method: "POST",
             data: {
-                goods_id: a.data.goods_id,
+                goods_id: a.data.id,
                 attr: JSON.stringify(o),
-                num: a.data.form.number,
-                source: 1 // 标识定时购商品
+                num: a.data.form.number
             },
             success: function(t) {
-                getApp().core.showToast({
+                getApp().core.hideLoading(), getApp().core.showToast({
                     title: t.msg,
                     duration: 1500
-                }), getApp().core.hideLoading(), a.setData({
+                }), a.setData({
                     show_attr_picker: !1
                 });
             }
-        })), "BUY_NOW" == t && (a.setData({
-            show_attr_picker: !1
-        }), getApp().core.redirectTo({
-            url: "/pages/order-submit/order-submit?goods_info=" + JSON.stringify({
+        })), "BUY_NOW" == t) {
+            a.setData({
+                show_attr_picker: !1
+            });
+            var d = [];
+            d.push({
                 goods_id: a.data.goods_id,
-                attr: o,
-                num: a.data.form.number
-            })
-        }));
+                num: a.data.form.number,
+                attr: o
+            });
+            var n = a.data.goods, c = 0;
+            null != n.mch && (c = n.mch.id);
+            var p = [];
+            p.push({
+                mch_id: c,
+                goods_list: d
+            }), getApp().core.redirectTo({
+                url: "/pages/new-order-submit/new-order-submit?mch_list=" + JSON.stringify(p)
+            });
+        }
     },
     hideAttrPicker: function() {
         this.setData({
@@ -252,7 +262,7 @@ Page({
             url: getApp().api.user.favorite_add,
             method: "post",
             data: {
-                goods_id: t.data.goods.id
+                goods_id: t.data.goods_id
             },
             success: function(a) {
                 if (0 == a.code) {
@@ -270,7 +280,7 @@ Page({
             url: getApp().api.user.favorite_remove,
             method: "post",
             data: {
-                goods_id: t.data.goods.id
+                goods_id: t.data.goods_id
             },
             success: function(a) {
                 if (0 == a.code) {
@@ -321,7 +331,7 @@ Page({
         getApp().page.onShareAppMessage(this);
         var a = this, e = getApp().getUser();
         return {
-            path: "/pages/dingshi/details/details?id=" + this.data.id + "&user_id=" + e.id,
+            path: "/pages/dingshi/details/details?goods_id=" + this.data.goods_id + "&user_id=" + e.id,
             success: function(t) {
                 1 == ++d && getApp().shareSendCoupon(a);
             },
@@ -372,7 +382,7 @@ Page({
         getApp().request({
             url: getApp().api.default.goods_qrcode,
             data: {
-                goods_id: t.data.id
+                goods_id: t.data.goods_id
             },
             success: function(a) {
                 0 == a.code && t.setData({

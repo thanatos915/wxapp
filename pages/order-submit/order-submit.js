@@ -171,7 +171,7 @@ Page({
             getApp().page.onShow(this);
             var a = this, e = getApp().core.getStorageSync(getApp().const.PICKER_ADDRESS);
             if (e) {
-                a.data.is_area_city_id;
+                // a.data.is_area_city_id;
                 var s = {};
                 s.address = e, s.name = e.name, s.mobile = e.mobile, getApp().core.removeStorageSync(getApp().const.PICKER_ADDRESS), 
                 a.setData(s), a.getInputData();
@@ -219,7 +219,7 @@ Page({
                     a.total_price = t.data.total_price || 0, a.goods_list = t.data.list || null, a.express_price = parseFloat(t.data.express_price), 
                     a.coupon_list = s, a.shop_list = n, a.send_type = t.data.send_type, a.level = t.data.level, 
                     a.new_total_price = t.data.total_price || 0, a.integral = t.data.integral, a.goods_card_list = t.data.goods_card_list || [], 
-                    a.is_payment = t.data.is_payment, a.mch_list = t.data.mch_list || null, a.is_area_city_id = t.data.is_area_city_id, 
+                    a.is_payment = t.data.is_payment, a.mch_list = t.data.mch_list || null,
                     a.pay_type_list = t.data.pay_type_list, a.offer_rule = t.data.offer_rule, a.is_area = t.data.is_area, 
                     i.setData(a), i.getInputData(), t.data.goods_info && i.setData({
                         goods_info: t.data.goods_info
