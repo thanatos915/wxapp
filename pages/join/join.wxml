@@ -1,0 +1,28 @@
+<!--pages/join.wxml-->
+<view class='join-us'>
+  <view class='join-us-title'>
+    申请团长身份，需要您填写真实姓名并验证手机
+  </view>
+  <view class='join-us-flex'>
+    <label class='join-us-label'>选择地址</label>
+    <input class='join-us-input' type='text' placeholder='请输入地区'></input>
+  </view>
+  <view class='join-us-flex'>
+    <label class='join-us-label'>小区名称</label>
+    <input class='join-us-input' type='text' placeholder='请输入小区名称'></input>
+  </view>
+  <view class='join-us-flex'>
+    <label class='join-us-label'>手机号</label>
+    <input class='join-us-input' type='tel' placeholder='请输入手机号'></input>
+  </view>
+  <view class='join-us-flex'>
+    <label class='join-us-label'>验证码</label>
+    <input class='join-us-input' type='text' placeholder='请输入验证码'></input>
+    <view class='join-us-send'>发送验证码</view>
+  </view>
+  <view class='join-us-flex'>
+    <label class='join-us-label'>姓名</label>
+    <input class='join-us-input' type='text' placeholder='请输入姓名'></input>
+  </view>
+  <view class='join-us-submit'>提交</view>
+</view>

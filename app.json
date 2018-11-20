@@ -132,7 +132,8 @@
     "bargain/rule/rule",
     "scratch/index/index",
     "scratch/prize/prize",
-    "scratch/rule/rule"
+    "scratch/rule/rule",
+    "pages/join/join"
   ],
   "window": {
     "backgroundTextStyle": "light",
