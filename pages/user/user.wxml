@@ -271,6 +271,15 @@
                 </view>
                 <view class="options-list" style="background-color: #fff;" wx:if="{{style.menu==1}}">
                     <view class="flex-row" style="flex-wrap: wrap">
+                        <navigator class="option-item flex-grow-0 style navigator-hover" url="/pages/myshop/join/join" wx:if="{{user_info.is_shop_admin == 0}}">
+                            <view>
+                                <view class="flex-x-center">
+                                    <image class="option-icon"
+                                           src="http://www.zhongmai.pro/web/statics/images/user-center/icon-user-fx.png"></image>
+                                </view>
+                                <view class="text-more-2" style="text-align: center">团长申请</view>
+                            </view>
+                        </navigator>
                         <navigator class="option-item flex-grow-0 style navigator-hover" url="/pages/myshop/index/index" wx:if="{{user_info.is_shop_admin == 1}}">
                             <view>
                                 <view class="flex-x-center">

@@ -1,0 +1,58 @@
+/* pages/join.wxss */
+.join-us {}
+.join-us .join-us-title {
+  background: #d0532f;
+  padding: 10rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+.join-us .join-us-flex {
+  display: flex;
+  align-items: center;
+  margin: 0 40rpx 20rpx;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10rpx;
+}
+.join-us .join-us-label {
+  display: block;
+  width: 160rpx;
+  text-align: left;
+  margin-right: 30rpx;
+}
+.join-us .join-us-input {
+  display: block;
+  width: 100%;
+  flex: 1;
+}
+.join-us .join-us-send {
+  width: 200rpx;
+  position: relative;
+  color: #c8c8c8;
+  font-size: 24rpx;
+  text-align: center;
+}
+.join-us .join-us-send:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14rpx;
+  width: 1rpx;
+  background: #ccc;
+}
+.join-us .join-us-submit {
+  display: block;
+  width: 420rpx;
+  height: 58rpx;
+  line-height: 58rpx;
+  border-radius: 29rpx;
+  margin: 0 auto;
+  font-size: 26rpx;
+  background: #d0532f;
+  color: #fff;
+  text-align: center;
+  margin-top: 140rpx;
+}

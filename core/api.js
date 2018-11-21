@@ -101,7 +101,8 @@ var e = require("../siteinfo.js"), r = "", o = {
         index: r+ "shop/index",
         account: r + 'shop/account',
         account_log: r + 'shop/account-log',
-        send: r + 'shop/shop-send'
+        send: r + 'shop/shop-send',
+        join: r + 'shop/shop-join'
     },
     share: {
         join: r + "share/join",
