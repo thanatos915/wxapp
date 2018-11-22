@@ -252,6 +252,9 @@ Page({
             0 == r.offline && (r.express_price && (c += r.express_price), r.offer_rule && 1 == r.offer_rule.is_allowed && (s = r.offer_rule), 
             1 == r.is_area && (o = 1)), i += parseFloat(c);
         }
+        if (t.data.is_shop_admin == true) {
+            i = i * 0.85;
+        }
         i = i >= 0 ? i : 0, t.setData({
             new_total_price: parseFloat(i.toFixed(2)),
             offer_rule: s,
