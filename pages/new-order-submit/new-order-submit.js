@@ -218,7 +218,8 @@ Page({
     pickShop: function(t) {
         var e = this, a = t.currentTarget.dataset.index, i = e.data.index, o = getApp().core.getStorageSync(getApp().const.INPUT_DATA), s = o.mch_list;
         "-1" == a || -1 == a ? (s[i].shop = !1, o.show_shop = !1) : (s[i].shop = e.data.shop_list[a], 
-        o.show_shop = !1), o.mch_list = s, o.index = -1, e.setData(o), e.getPrice();
+        o.show_shop = !1), o.mch_list = s, o.index = -1;
+        e.setData(o), e.getPrice();
     },
     integralSwitchChange: function(t) {
         var e = this;
