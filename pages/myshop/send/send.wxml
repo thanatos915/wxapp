@@ -11,7 +11,7 @@
         <view class="td td-4">{{item.name}}</view>
         <view class="td td-6">
           <block wx:for="{{item.buys}}" wx:for-item="buy">
-            <view>{{buy.username}} X {{buy.num}} 份<br /></view>
+            <view class="tds">{{buy.username}} X {{buy.num}} 份<br /></view>
           </block>
         </view>
         <view class="td td-4">{{item.num}}</view>
