@@ -8,15 +8,21 @@
   justify-content: center;
   /* line-height: 2rem; */
   align-items: center;
+  padding: 10rpx 0;
+}
+.tr:nth-child(even) {
+  background: #fff;
 }
 .td {
     justify-content: center;
     text-align: center;
     padding: 5rpx 10rpx;
+    font-size: 22rpx;
 }
 
 .tds {
-  padding: 10rpx 0;
+  /* padding: 10rpx 0; */
+  /* padding-top: 10rpx; */
 }
 
 .td-span {
