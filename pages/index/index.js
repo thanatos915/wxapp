@@ -67,6 +67,11 @@ Page({
                             index: 0
                         }
                     }
+                });
+                // 设置购物车数量
+                wx.setStorage({
+                    key: "cart_count",
+                    data: t.data.cart_count
                 })
             },
             complete: function() {
@@ -354,7 +359,6 @@ Page({
     submit: function(t, e) {
         var a = this;
         var event = e;
-        console.log(event);
         a.data.goods_list.forEach(item => {
             if (item.id == event.target.dataset.goodsId) {
                 if (!a.data.show_attr_picker) {
@@ -418,6 +422,15 @@ Page({
                         source: 1 // 标识定时购商品
                     },
                     success: function(t) {
+                        //增加购物车数量
+                        var cart_count = parseInt(a.data.cart_count) +  parseInt(a.data.form.number);
+                        wx.setStorage({
+                            key: "cart_count",
+                            data: cart_count,
+                        });
+                        a.setData({
+                            cart_count: cart_count
+                        })
                         getApp().core.showToast({
                             title: t.msg,
                             duration: 1500

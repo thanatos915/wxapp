@@ -38,6 +38,14 @@ module.exports = {
         }), void 0 === e.bindParent && (e.bindParent = function(e) {
             o.bindParent(e);
         });
+        wx.getStorage({
+            key: 'cart_count',
+            success (res) {
+                e.setData({
+                    cart_count: res.data
+                })
+            }
+        });
     },
     onReady: function(e) {
         this.currentPage = e;

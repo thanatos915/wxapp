@@ -213,11 +213,20 @@ Page({
             url: getApp().api.cart.add_cart,
             method: "POST",
             data: {
-                goods_id: a.data.id,
+                goods_id: a.data.goods_id,
                 attr: JSON.stringify(o),
                 num: a.data.form.number
             },
             success: function(t) {
+                //增加购物车数量
+                var cart_count = parseInt(a.data.cart_count) +  parseInt(a.data.form.number);
+                wx.setStorage({
+                    key: "cart_count",
+                    data: cart_count,
+                });
+                a.setData({
+                    cart_count: cart_count
+                })
                 getApp().core.hideLoading(), getApp().core.showToast({
                     title: t.msg,
                     duration: 1500

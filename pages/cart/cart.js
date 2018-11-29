@@ -152,6 +152,17 @@ Page({
     cartDone: function() {
         var t = this, a = t.data.cart_list;
         for (var i in a) a[i].checked = !1;
+        var cart_count = 0;
+        a.forEach(item => {
+            cart_count += parseInt(item.num);
+        });
+        wx.setStorage({
+            key: "cart_count",
+            data: cart_count,
+        });
+        t.setData({
+            cart_count: cart_count
+        })
         t.setData({
             cart_list: a,
             show_cart_edit: !1,
