@@ -28,7 +28,13 @@ Page({
         }), getApp().request({
             url: getApp().api.cart.list,
             success: function(a) {
+                // 设置购物车数量
+                wx.setStorage({
+                    key: "cart_count",
+                    data: a.data.cart_count
+                });
                 0 == a.code && t.setData({
+                    cart_count: a.data.cart_count,
                     cart_list: a.data.list,
                     mch_list: a.data.mch_list,
                     total_price: 0,

@@ -423,7 +423,8 @@ Page({
                     },
                     success: function(t) {
                         //增加购物车数量
-                        var cart_count = parseInt(a.data.cart_count) +  parseInt(a.data.form.number);
+                        var cart_count = parseInt(a.data.cart_count) + parseInt(a.data.form.number);
+                        console.log(cart_count);
                         wx.setStorage({
                             key: "cart_count",
                             data: cart_count,
