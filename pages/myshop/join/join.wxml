@@ -7,7 +7,7 @@
   </view>
   <view class='join-us-flex' bindtap="showAreaPicker">
     <label class='join-us-label'>选择地址</label>
-    <input class='join-us-input' type='text' placeholder='请输入地区' value="{{district == null ? '请选择区域': district.province.name + ' ' + district.city.name + ' '+ district.district.name}}"></input>
+    <input class='join-us-input' readonly disabled value="{{district == null ? '请选择区域': district.province.name + ' ' + district.city.name + ' '+ district.district.name}}"></input>
   </view>
   <view class='join-us-flex'>
     <label class='join-us-label'>小区名称</label>
