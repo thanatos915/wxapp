@@ -378,10 +378,11 @@
             </navigator>
             <navigator class="goods-item" openType="navigate" url="/pages/dingshi/details/details?goods_id={{item.id}}" wx:for="{{goods_list}}" wx:key="{{item.id}}">
                 <image class="goods-pic" mode="aspectFill" src="{{item.pic_url}}"></image>
+                <view class="goods-icon-hot">爆款</view>
                 <view class="goods-list-time">距结束 {{item.time}}</view>
                 <view class="goods-info" style="padding:5rpx 20rpx 15rpx;">
                     <text class="goods-info-title text-more-2">{{item.name}}</text>
-                    <text class='goods-info-send text-more-2'>提货时间：2018-12-04 15:00:00</text>
+                    <text class='goods-info-send text-more-2'>提货时间：{{item.pick_time}}</text>
                     <view class="flex-row goods-info-row" style='align-items:  center;'>
                         <view class="flex-grow-1 goods-list-item-name" style="color:#ff334b">
                             <view>
@@ -389,7 +390,7 @@
                             </view>
                             <view>
                                 <text class="goods-list-item-desc goods-list-item-del">市场价：{{item.original_price}}</text>
-                                <text class='goods-list-item-desc'>已售:{{item.sales}}份/剩余200份</text>
+                                <text class='goods-list-item-desc'>已售:{{item.sales}}/剩余{{item.num }}{{item.unit}}</text>
                             </view>
                         </view>
                         <!-- <view class="flex-grow-1 fs-sm goods-list-item-desc goods-list-item-del">
@@ -404,6 +405,7 @@
                     </view>
                 </view>
             </navigator>
+
 
         </view>
     </view>

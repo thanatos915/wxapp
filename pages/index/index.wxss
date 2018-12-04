@@ -1253,3 +1253,17 @@
     padding: 15rpx 0 15rpx 20rpx;
     margin: 20rpx -20rpx 0;
 }
+
+.goods-icon-hot {
+    position: absolute;
+    left: 20rpx;
+    top: 220rpx;
+    width: 100rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    border-radius: 50%;
+    text-align: center;
+    background: linear-gradient(to top,#fd5346,#ff4800);
+    color: #fff;
+    font-size: 26rpx;
+}
