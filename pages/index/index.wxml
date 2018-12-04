@@ -25,6 +25,35 @@
         </block>
         <template is="act-modal" data="{{__wxapp_img:__wxapp_img,act_modal_list:act_modal_list}}" wx:if="{{act_modal_list&&act_modal_list.length>0}}"></template>
     </view>
+    <!-- test -->
+    <!-- <view class="goods-list">
+        <navigator class="goods-item" openType="navigate" url="/pages/dingshi/details/details?goods_id=11" >
+            <image class="goods-pic" mode="aspectFill" style="height: 120rpx;" src=""></image>
+            <view class="goods-list-time">距结束 11111</view>
+            <view class="goods-info" style="padding:5rpx 20rpx 15rpx;">
+                <text class="goods-info-title text-more-2">名称名称名称</text>
+                <text class='goods-info-send text-more-2'>提货时间：2018-12-04 15:00:00</text>
+                <view class="flex-row goods-info-row" style='align-items: center;'>
+                    <view class="flex-grow-1 goods-list-item-name" style="color:#ff334b">
+                        <view>
+                          <block wx:if="{{item.is_negotiable!=1}}">团购价：￥</block> 12:00
+                        </view>
+                        <view>
+                          <text class="goods-list-item-desc goods-list-item-del">市场价：14:00</text>
+                          <text class='goods-list-item-desc'>已售:100份/剩余200份</text>
+                        </view>
+                    </view>
+                    <view class='flex-grow-2 fs-sm' style='padding: 0 20rpx;'>
+                      <view class='goods-list-item-cart'>
+                        <view catchtap="addCart" class="carts" data-goods-id="{{item.id}}">加入购物车</view>
+                      </view>
+                    </view>
+                </view>
+            </view>
+        </navigator>
+
+    </view> -->
+    <!-- test -->
     <view class="flex-row bar-bottom" style="z-index: 9999999" wx:if="{{show_attr_picker}}">
         <view class="flex-grow-1 flex-row">
             <view bindtap="addCart" class="flex-grow-1 flex-y-center flex-x-center buy-now" data-goods-id="{{temp_goods_id}}">确定</view>
