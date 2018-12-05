@@ -371,7 +371,7 @@
         </view>
         <view class="goods-list">
             <view class="no-data-tip" wx:if="{{show_no_data_tip}}">该类目暂无内容</view>
-            <navigator url='/pages/join/join'>
+            <navigator>
                 <view class='goods-list-title'>
                     <text class='goods-list-h2'>今日团购</text>
                 </view>
@@ -384,7 +384,7 @@
                     <text class="goods-info-title text-more-2">{{item.name}}</text>
                     <text class='goods-info-send text-more-2'>提货时间：{{item.pick_time}}</text>
                     <view class="flex-row goods-info-row" style='align-items:  center;'>
-                        <view class="flex-grow-1 goods-list-item-name" style="color:#ff334b">
+                        <view class="flex-grow-1 goods-list-item-name" style="color:#ff4544">
                             <view>
                                 <block wx:if="{{item.is_negotiable!=1}}">团购价：￥</block>{{item.price}}
                             </view>

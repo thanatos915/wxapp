@@ -288,7 +288,7 @@
     font-size: 22rpx;
     line-height: 44rpx;
     color: #fff;
-    background: linear-gradient(to left,#fd5346,#fb9447);
+    background: linear-gradient(to left,#fd5346,#fd5346);
 }
 
 .goods-list .goods-item image {
@@ -304,9 +304,10 @@
 .goods-list .goods-list-h2 {
     display: inline-block;
     font-size: 34rpx;
-    color: #d0532f;
+    color: #ff4544;
     letter-spacing: 4rpx;
     position: relative;
+    font-weight: bold;
 }
 .goods-list .goods-list-h2:after ,
 .goods-list .goods-list-h2:before {
@@ -339,7 +340,7 @@
     line-height: 56rpx;
     border-radius: 28rpx;
     color: #fff;
-    background: linear-gradient(to bottom,#fd5346,#ff4800);
+    background: linear-gradient(to top,#ff4544,#ff4544);
     position: relative;
 }
 /* .goods-list-item-cart:after ,
@@ -1191,7 +1192,7 @@
 }
 .goods-list-item-desc {
     color: #333;
-    font-size: 20rpx;
+    font-size: 22rpx;
     padding-right: 20rpx;
     /* margin-left: -20rpx; */
 }
@@ -1263,7 +1264,7 @@
     line-height: 100rpx;
     border-radius: 50%;
     text-align: center;
-    background: linear-gradient(to top,#fd5346,#ff4800);
+    background: linear-gradient(to top,#ff4544,#ff4900);
     color: #fff;
     font-size: 26rpx;
 }
