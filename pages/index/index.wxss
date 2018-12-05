@@ -1193,7 +1193,7 @@
 .goods-list-item-desc {
     color: #333;
     font-size: 22rpx;
-    padding-right: 20rpx;
+    padding-right: 80rpx;
     /* margin-left: -20rpx; */
 }
 
@@ -1264,7 +1264,7 @@
     line-height: 100rpx;
     border-radius: 50%;
     text-align: center;
-    background: linear-gradient(to top,#ff4544,#ff4900);
+    background: #ff4544;
     color: #fff;
     font-size: 26rpx;
 }
