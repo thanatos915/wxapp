@@ -444,6 +444,12 @@ view {
     padding: 0 16rpx;
     border-radius: 10rpx;
 }
+.miaosha-bar .text-more-2 {
+  font-size: 20rpx;
+}
+.miaosha-bar .text-more-3 {
+  font-size: 24rpx;
+}
 
 .miaosha-bar .time-over-text {
     text-align: center;

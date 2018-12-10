@@ -12,18 +12,19 @@
                     <view class="flex-grow-1 flex-col miaosha-bar-left">
                         <view class="flex-grow-0 flex-y-center">
                             <view class="miaosha-price flex-y-center" style="font-size:19pt;margin-top:15rpx">
-                                <text class="cny" style="font-size:11pt;padding-top:12rpx">￥</text>
-                                <text>{{goods.dingshi.new_small_price}}</text>
+                                <text class="cny" style="font-size:11pt;padding-top:6rpx">￥</text>
+                                <text class="text-more-3">团购价：{{goods.dingshi.new_small_price}}</text>
                                 <text style="margin:0 10rpx;width:14rpx;height:4rpx;background:#ffffff;" wx:if="{{goods.dingshi.new_big_price>goods.dingshi.new_small_price}}"></text>
                                 <text wx:if="{{goods.dingshi.new_big_price>goods.dingshi.new_small_price}}">{{goods.dingshi.new_big_price}}</text>
                             </view>
                         </view>
                         <view class="flex-grow-1 flex-row miaosha-price">
-                            <view class="flex-row flex-y-center" style="padding-bottom:8rpx">
-                                <view class="goods-price">￥{{goods.dingshi.old_small_price}}
+                            <view class="flex-row flex-y-center" style="padding-bottom:8rpx; width: 100%;">
+                                <view class="goods-price text-more-2">市场价：￥{{goods.dingshi.old_small_price}}
                                     <text wx:if="{{goods.dingshi.old_big_price>goods.dingshi.old_small_price}}">-{{goods.dingshi.old_big_price}}</text>
                                 </view>
-                                <view class="sell-num" style="margin-left:24rpx">已抢{{goods.dingshi.sell_num}}</view>
+                                <view class="text-more-2">已售：0/还剩：1000</view>
+                                <!-- <view class="sell-num" style="margin-left:24rpx">已抢{{goods.dingshi.sell_num}}</view> -->
                             </view>
                         </view>
                     </view>
