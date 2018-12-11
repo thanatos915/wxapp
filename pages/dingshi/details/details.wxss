@@ -405,8 +405,8 @@ view {
 }
 
 .miaosha-bar-left {
-    background: linear-gradient(to right,#ff5527,#ff2755);
-    color: #fff;
+    background: linear-gradient(to right,#c0efff,#fff);
+    color: #999;
 }
 
 .miaosha-bar-right {

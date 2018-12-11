@@ -55,14 +55,14 @@
                         </view>
                     </view>
                 </view>
-                <view class="bg-white mb-20 flex-row check-list" wx:if="{{goods.service_list&&goods.service_list.length>0}}">
+                <!-- <view class="bg-white mb-20 flex-row check-list" wx:if="{{goods.service_list&&goods.service_list.length>0}}">
                     <view class="check-item flex-y-center" wx:for="{{goods.service_list}}" wx:key="{{item.id}}">
                         <image src="{{__wxapp_img.store.check.url}}"></image>
                         <text>{{item}}</text>
                     </view>
                 </view>
-                <view class="mb-20" wx:else></view>
-                <view bindtap="showAttrPicker" class="flex-row flex-y-center" style="background: #fff;padding:0 24rpx;margin-bottom: 20rpx;height: 100rpx;">
+                <view class="mb-20" wx:else></view> -->
+                <!-- <view bindtap="showAttrPicker" class="flex-row flex-y-center" style="background: #fff;padding:0 24rpx;margin-bottom: 20rpx;height: 100rpx;">
                     <view class="flex-grow-1 flex-row flex-y-center">
                         <text>选择</text>
                         <text style="margin-left: 40rpx;font-size: 9pt;color: #888888">规格</text>
@@ -70,7 +70,7 @@
                     <view class="flex-grow-0">
                         <image src="{{__wxapp_img.store.jiantou_r.url}}" style="width: 16rpx;height: 26rpx"></image>
                     </view>
-                </view>
+                </view> -->
                 <view class="tab-group">
                     <view class="flex-row tab-group-header">
                         <view bindtap="tabSwitch" class="flex-grow-1 flex-x-center tab-group-item {{tab_detail}}" data-tab="detail">
