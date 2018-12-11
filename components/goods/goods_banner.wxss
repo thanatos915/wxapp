@@ -1,9 +1,9 @@
 .goods-image-swiper {
-    height: 382rpx;
+    height: 600rpx;
 }
 
 .goods-image-swiper image {
-    height: 382rpx;
+    height: 600rpx;
 }
 
 .goods-image {

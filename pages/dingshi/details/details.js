@@ -345,7 +345,7 @@ Page({
                 1 == ++d && getApp().shareSendCoupon(a);
             },
             title: a.data.goods.name,
-            imageUrl: a.data.goods.pic_list[0].pic_url
+            imageUrl: a.data.goods.pic_list[0]
         };
     },
     play: function(t) {
