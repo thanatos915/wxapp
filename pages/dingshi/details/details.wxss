@@ -405,8 +405,13 @@ view {
 }
 
 .miaosha-bar-left {
-    background: linear-gradient(to right,#c0efff,#fff);
-    color: #999;
+    /* background: linear-gradient(to right,#c0efff,#fff); */
+    background: linear-gradient(to right,#ff4544,#ffd88d);
+    color: #333;
+}
+
+.miaosha-bar-left .text-more-bold {
+  font-weight: bold;
 }
 
 .miaosha-bar-right {
