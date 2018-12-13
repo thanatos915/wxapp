@@ -370,10 +370,9 @@
             </scroll-view>
         </view>
         <view class="goods-list">
-            <view class="no-data-tip" wx:if="{{show_no_data_tip}}">该类目暂无内容</view>
             <navigator>
                 <view class='goods-list-title'>
-                    <text class='goods-list-h2'>今日团购</text>
+                    <text class='goods-list-h2'>{{show_data_tip}}</text>
                 </view>
             </navigator>
             <navigator class="goods-item" openType="navigate" url="/pages/dingshi/details/details?goods_id={{item.id}}" wx:for="{{goods_list}}" wx:key="{{item.id}}">

@@ -16,7 +16,8 @@ Page({
         form: {
             number: 1
         },
-        intervalArr: []
+        intervalArr: [],
+        show_data_tip: '今日团购'
     },
     onLoad: function(a) {
         getApp().page.onLoad(this, a), this.loadData(a), t.init(this);
@@ -283,7 +284,12 @@ Page({
                 page: c
             },
             success: function(e) {
-                
+
+                var show_data_tip = 0 == s.data.list.length ? '团购已结束' : '今日团购';
+                console.log(show_data_tip);
+                s.setData({
+                    show_data_tip: show_data_tip
+                });
                 // goods_list: list
                 0 == e.code && (getApp().core.hideLoading(), 0 == e.data.list.length && (a = !0),
                     function () {
@@ -341,7 +347,7 @@ Page({
                 }), s.setData({
                     cat_id: t
                 })), s.setData({
-                    show_no_data_tip: 0 == s.data.goods_list.length
+                    show_no_data_tip: 0 == s.data.goods_list.length,
                 });
             },
             complete: function() {
