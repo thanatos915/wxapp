@@ -29,14 +29,16 @@
             <view class="flex-grow-1 flex-y-center">{{data5}}</view>
         </view>
         <view class="flex flex-row menu-list" style="margin-bottom: 24rpx">
+            <!--
             <view class="flex-grow-0 menu-item">
-                <!--<form bindsubmit="navigatorSubmit" reportSubmit="true">-->
+                <form bindsubmit="navigatorSubmit" reportSubmit="true">
                 <button class="block-button" bindtap="scanCode">
                     <image src="/mch/images/menu-6.png"></image>
                     <view>扫码核销</view>
                 </button>
-                <!--</form>-->
+                </form>
             </view>
+            -->
             <view class="flex-grow-0 menu-item">
                 <form bindsubmit="navigatorSubmit" reportSubmit="true">
                     <input name="url" style="display: none" value="/pages/myshop/account/account"></input>
