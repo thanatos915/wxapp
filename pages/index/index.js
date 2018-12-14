@@ -285,8 +285,7 @@ Page({
             },
             success: function(e) {
 
-                var show_data_tip = 0 == s.data.list.length ? '团购已结束' : '今日团购';
-                console.log(show_data_tip);
+                var show_data_tip = 0 == e.data.list.length ? '团购已结束' : '今日团购';
                 s.setData({
                     show_data_tip: show_data_tip
                 });
