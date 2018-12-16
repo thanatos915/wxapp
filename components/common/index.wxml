@@ -398,7 +398,7 @@
                         <view class="flex-grow-1 fs-sm goods-list-item-desc">已售:{{item.sales}}</view> -->
                         <view class='flex-grow-2 fs-sm' style='padding: 0 20rpx;'>
                             <view class='goods-list-item-cart'>
-                                <view catchtap="addCart" class="carts" data-goods-id="{{item.id}}">购物车</view>
+                                <view catchtap="addCart" class="carts" data-goods-id="{{item.id}}">加入购物车</view>
                             </view>
                         </view>
                     </view>
