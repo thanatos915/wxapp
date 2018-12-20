@@ -413,7 +413,7 @@
                         <image class="goods-pic" mode="aspectFill" src="{{item.pic_url}}"></image>
                         <view class="goods-icon-hot">爆款</view>
                         <view class="goods-list-time">距结束 {{item.time}}</view>
-                        <view class='goods-list-tips'>已结束</view>
+                        <!--<view class='goods-list-tips'>已结束</view>-->
                         <view class="goods-info" style="padding:5rpx 20rpx 15rpx;">
                             <text class="goods-info-title text-more-2">{{item.name}}</text>
                             <text class='goods-info-send text-more-2'>提货时间：{{item.pick_time}}</text>

@@ -65,7 +65,7 @@ n.webRoot = a, n.getauth = function(e) {
         content: e.content,
         confirmText: "去设置",
         success: function(n) {
-            n.confirm ? t.hj.openSetting({
+            n.confirm ? t.core.openSetting({
                 success: function(t) {
                     e.success && e.success(t);
                 },

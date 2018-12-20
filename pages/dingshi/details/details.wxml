@@ -23,7 +23,7 @@
                                 <view class="goods-price text-more-2 text-more-bold">市场价：￥{{goods.dingshi.old_small_price}}
                                     <text wx:if="{{goods.dingshi.old_big_price>goods.dingshi.old_small_price}}">-{{goods.dingshi.old_big_price}}</text>
                                 </view>
-                                <view class="text-more-2">已售：{{goods.dingshi.sell_num}}份 /还剩：{{goods.num}}份</view>
+                                <view class="text-more-2">已售：{{goods.sales}} /还剩：{{goods.num}}{{goods.unit}}</view>
                                 <!-- <view class="sell-num" style="margin-left:24rpx">已抢{{goods.dingshi.sell_num}}</view> -->
                             </view>
                         </view>
