@@ -1276,8 +1276,8 @@
 } */
 
 .goods-list .goods-item-disabled .goods-icon-hot{ background: rgba(0, 0, 0, .4);  }
-/* .goods-list .goods-item-disabled .goods-list-time { background: #ddd; color: #999; } */
-.goods-list .goods-item-disabled .goods-list-time { display: none; }
+.goods-list .goods-item-disabled .goods-list-time { background: #ddd; color: #999; }
+/* .goods-list .goods-item-disabled .goods-list-time { display: none; } */
 .goods-list .goods-item-disabled .goods-list-item-cart { display: none; }
 .goods-list .goods-item-disabled .goods-list-tips { position: absolute; top: 170rpx; left: 50%; transform: translateX(-50%); padding: 10rpx 30rpx; background: rgba(0, 0, 0, .4); color: #fff;  }
 .goods-list .goods-item-disabled .goods-pic { opacity: .6; }

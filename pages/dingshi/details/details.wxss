@@ -536,3 +536,17 @@ view {
   color: #ccc;
   padding: 0 15rpx;
 }
+.goods-detail-share {
+  background: #ff4544;
+  color: #fff;
+  padding: 0 25rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  position: absolute;
+  right: 0;
+  top: 50rpx;
+  z-index: 999999;
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+}

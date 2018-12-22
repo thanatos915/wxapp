@@ -3,6 +3,7 @@ var t = require("../../../utils/helper.js"), a = require("../../../components/qu
 Page({
     data: {
         pageType: "dingshi",
+        order: -1,
         id: null,
         goods: {},
         show_attr_picker: !1,
@@ -50,6 +51,43 @@ Page({
             scene_type: c,
             goods_id: e.goods_id
         }), u.getGoods(), u.getRecordList();
+    },
+    drawImg: function() {
+      const PIC = this.data.detail.imageUrls[0]
+      console.log(PIC)
+
+      let ctx = wx.createCanvasContext('myCanvas');
+      // 为了显示canvas的边框阴影 宽高都加了40px 然后进行移动位置 20 20
+      ctx.translate(20, 20);
+
+      // 画白色背景
+      ctx.save();
+      ctx.setFillStyle('#f00');
+      ctx.setShadow(0, 0, 15, 'rgba(4, 0, 0, 0.3)');
+      ctx.fillRect(0, 0, '80%', '60%');
+      ctx.restore();
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(0,0,0,0)";
+      ctx.rect(66, 251, 621, 668);
+      ctx.closePath();
+      ctx.stroke();
+      ctx.clip();
+      ctx.drawImage(PIC, 0, 0, '100%', '100%');
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = 'normal 25px arial';
+      ctx.fillStyle = '#1D1D1D';
+      ctx.textBaseline = 'top';
+      ctx.textAlign = 'right';
+      ctx.fillText('价格', 0, 0);
+      ctx.restore();
+
+      this.setData({
+        order: 99999
+      })
     },
     getGoods: function() {
         var t = this, a = {};
