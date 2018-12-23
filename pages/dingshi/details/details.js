@@ -40,10 +40,8 @@ Page({
       windowHeight: 0,
       loaded: false,
       productDetail: {
-        imageUrl: 'http://zs.qdvmai.com/web/uploads/image/store_1/10de99cc795c988828ecb3f7a7ab46c622c3d0a7.jpg',
-        proQuestion: '我是一个粉刷匠粉刷本领强。我要把那新房子，刷得更漂亮。刷了房顶又刷墙，刷子像飞一样。哎呀我的小鼻子，变呀变了样。'
-      },
-      nickName: '列申斯卡'
+        imageUrl: 'http://zs.qdvmai.com/web/uploads/image/store_1/10de99cc795c988828ecb3f7a7ab46c622c3d0a7.jpg'
+      }
     },
     onLoad: function(e) {
         getApp().page.onLoad(this, e), d = 0, s = 1, r = !1, n = !0, a.init(this);
@@ -129,23 +127,6 @@ Page({
         ctx.fillRect(20,683,710,120);      //绘制渐变图形
         ctx.stroke()
 
-        // 写问题
-        CTB({
-          ctx,
-          text: this.getSub(productDetail.proQuestion, 32),
-          x: 64,
-          y: 988,
-          w: 350,
-          fontStyle: {
-            lineHeight: 39,
-            textAlign: 'left',
-            textBaseline: 'top',
-            font: 'normal 23px arial',
-            fontSize: 23,
-            fillStyle: '#000000'
-          }
-        });
-
         // 画日期前面的圆
         // ctx.save();
         // ctx.beginPath();
@@ -171,15 +152,6 @@ Page({
         ctx.textDecoration = 'line-through';
         ctx.fillText('￥市场价' +this.data.goods.original_price, 360, 730);
         ctx.restore();
-
-        // 写分享来自@xxx
-        // ctx.save();
-        // ctx.font = 'bold 25px arial';
-        // ctx.fillStyle = '#000000';
-        // ctx.textBaseline = 'top';
-        // ctx.textAlign = 'right';
-        // ctx.fillText(`分享自 @${this.data.nickName}`, WIDTH - 63, 1065);
-        // ctx.restore();
 
         ctx.draw(false, () => {
           // 生成图片
