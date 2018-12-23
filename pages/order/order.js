@@ -8,7 +8,19 @@ Page({
         order_list: [],
         show_no_data_tip: !1,
         hide: 1,
-        qrcode: ""
+        qrcode: "",
+        date: '2017-12-23',
+        date1: '2017-12-23',
+    },
+    listenerDatePickerSelected:function(e) {
+        this.setData({
+            date: e.detail.value
+        })
+    },
+    listenerDatePickerSelected1:function(e) {
+        this.setData({
+            date1: e.detail.value
+        })
     },
     onLoad: function(o) {
         getApp().page.onLoad(this, o);

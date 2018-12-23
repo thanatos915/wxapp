@@ -33,6 +33,19 @@
             </view>
         </view>
         <view class="order-list">
+            <view class="order-date">
+                <view class="order-date-picker">
+                    <picker mode="date" value="{{date}}" bindchange="listenerDatePickerSelected">
+                        <text>{{date}}</text>
+                    </picker>
+                </view>
+                <view class="order-date-tips">-</view>
+                <view class="order-date-picker">
+                    <picker mode="date" value="{{date1}}" start="{{date}}" bindchange="listenerDatePickerSelected1">
+                        <text>{{date1}}</text>
+                    </picker>
+                </view>
+            </view>
             <view class="no-data-tip" wx:if="{{show_no_data_tip}}">暂无相关订单</view>
             <view class="order-item" wx:for="{{order_list}}" wx:for-item="order" wx:key="{{order.id}}">
                 <navigator url="{{status==4?'/pages/order-refund-detail/order-refund-detail?id='+order.order_refund_id:'/pages/order-detail/order-detail?id='+order.order_id}}">

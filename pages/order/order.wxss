@@ -124,3 +124,19 @@
     background-color: rgba(0,0,0,0.5);
     z-index: 9999;
 }
+.order-date {
+    background: #fff;
+    padding: 15rpx;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.order-date .order-date-picker {
+    flex: 1;
+    background: #efeff4;
+    height: 50rpx;
+    line-height: 50rpx;
+}
+.order-date .order-date-tips {
+    width: 60rpx;
+}
