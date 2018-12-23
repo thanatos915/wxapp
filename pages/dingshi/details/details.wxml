@@ -5,7 +5,7 @@
     <include src="/components/quick-navigation/quick-navigation.wxml"></include>
     <view class="body">
         <include src="/components/goods/specifications_model.wxml"></include>
-        <view class='goods-detail-share' bindtap='drawImg'>分享</view>
+        <view class='goods-detail-share' bindtap='draw'>分享</view>
         <view class="{{show_attr_picker||show||no_scroll?'no-scroll':''}}">
             <view style="padding-bottom: 120rpx">
                 <include src="/components/goods/goods_banner.wxml"></include>
@@ -229,7 +229,10 @@
                 </view>
             </view>
         </view>
-         <canvas class="poster__my-canvas" canvas-id="myCanvas" style="width: 80%; height: 60%; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: {{order}};" />
+        <view class="poster__create-wrp">
+            <image src="{{cardCreateImgUrl}}" mode="aspectFill" class="poster__create-img" bindload="bindload"></image>
+        </view>
+        <canvas class="poster__my-canvas" canvas-id="myCanvas" style="width:{{NEW_WIDTH}}px;height:{{NEW_HEIGHT}}px;" />
     </view>
     <include src="/components/footer/footer"></include>
 </view>

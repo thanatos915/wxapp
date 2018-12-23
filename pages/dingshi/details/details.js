@@ -1,5 +1,7 @@
 var t = require("../../../utils/helper.js"), a = require("../../../components/quick-navigation/quick-navigation.js"), e = require("../../../components/goods/goods_banner.js"), o = require("../../../components/goods/specifications_model.js"), i = require("../../../wxParse/wxParse.js"), s = 1, r = !1, n = !0, d = 0;
-
+import CTB from '../utils/canvas-text-break.js';
+import wxp from '../utils/wxp.js';
+let ctx = null;
 Page({
     data: {
         pageType: "dingshi",
@@ -29,7 +31,19 @@ Page({
             m: "--",
             s: "--",
             type: 0
-        }
+        },
+      NEW_WIDTH: 750 + 40,
+      NEW_HEIGHT: 1148 + 40,
+      WIDTH: 750,
+      HEIGHT: 1148,
+      windowWidth: 0,
+      windowHeight: 0,
+      loaded: false,
+      productDetail: {
+        imageUrl: 'http://zs.qdvmai.com/web/uploads/image/store_1/10de99cc795c988828ecb3f7a7ab46c622c3d0a7.jpg',
+        proQuestion: '我是一个粉刷匠粉刷本领强。我要把那新房子，刷得更漂亮。刷了房顶又刷墙，刷子像飞一样。哎呀我的小鼻子，变呀变了样。'
+      },
+      nickName: '列申斯卡'
     },
     onLoad: function(e) {
         getApp().page.onLoad(this, e), d = 0, s = 1, r = !1, n = !0, a.init(this);
@@ -52,42 +66,204 @@ Page({
             goods_id: e.goods_id
         }), u.getGoods(), u.getRecordList();
     },
-    drawImg: function() {
-      const PIC = this.data.detail.imageUrls[0]
-      console.log(PIC)
+    draw() {
+      wx.showLoading({
+        title: '图片加载中...',
+      });
+      const {
+        WIDTH,
+        HEIGHT,
+        productDetail
+      } = this.data;
+      productDetail.imageUrl = this.data.goods.pic_list[0]
+      var ctx = wx.createCanvasContext('myCanvas');
 
-      let ctx = wx.createCanvasContext('myCanvas');
       // 为了显示canvas的边框阴影 宽高都加了40px 然后进行移动位置 20 20
       ctx.translate(20, 20);
 
       // 画白色背景
       ctx.save();
-      ctx.setFillStyle('#f00');
+      ctx.setFillStyle('#fff');
       ctx.setShadow(0, 0, 15, 'rgba(4, 0, 0, 0.3)');
-      ctx.fillRect(0, 0, '80%', '60%');
+      ctx.fillRect(0, 0, WIDTH, 823);
       ctx.restore();
 
-      ctx.save();
-      ctx.beginPath();
-      ctx.strokeStyle = "rgba(0,0,0,0)";
-      ctx.rect(66, 251, 621, 668);
-      ctx.closePath();
-      ctx.stroke();
-      ctx.clip();
-      ctx.drawImage(PIC, 0, 0, '100%', '100%');
-      ctx.restore();
+      // 获取图片信息
+      wxp.getImageInfo({
+        src: productDetail.imageUrl,
+      }).then((res) => {
+          console.log('获取图片信息')
+          console.log(res)
+        const {
+          productDetail
+        } = this.data;
+        const scale1 = res.width / res.height;
+        const scale2 = 663 / 710;
+        let drawW = 0,
+          drawH = 0,
+          mt = 0,
+          ml = 0;
+        if (scale1 > scale2) {
+          drawH = 710;
+          drawW = 710 * scale1;
+          ml = (663 - drawW) / 2;
+        } else {
+          drawW = 663;
+          drawH = drawW / scale1;
+        }
+        ctx.save();
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(0,0,0,0)";
+        ctx.rect(20, 20, 710, 663);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.clip();
+        ctx.drawImage(res.path, ml + 20, mt + 20, drawW, drawH);
+        ctx.restore();
 
-      ctx.save();
-      ctx.font = 'normal 25px arial';
-      ctx.fillStyle = '#1D1D1D';
-      ctx.textBaseline = 'top';
-      ctx.textAlign = 'right';
-      ctx.fillText('价格', 0, 0);
-      ctx.restore();
+        // 画渐变
+        let gradient = ctx.createLinearGradient(0,0,633,0);
+        gradient.addColorStop(0,"#ff4544");
+        gradient.addColorStop(1,"#ffd88d");
+        ctx.fillStyle=gradient;         //设置fillStyle为当前的渐变对象
+        ctx.fillRect(20,683,710,120);      //绘制渐变图形
+        ctx.stroke()
 
-      this.setData({
-        order: 99999
-      })
+        // 写问题
+        CTB({
+          ctx,
+          text: this.getSub(productDetail.proQuestion, 32),
+          x: 64,
+          y: 988,
+          w: 350,
+          fontStyle: {
+            lineHeight: 39,
+            textAlign: 'left',
+            textBaseline: 'top',
+            font: 'normal 23px arial',
+            fontSize: 23,
+            fillStyle: '#000000'
+          }
+        });
+
+        // 画日期前面的圆
+        // ctx.save();
+        // ctx.beginPath();
+        // ctx.arc(WIDTH - 210, 991 + 14, 10, 0, 2 * Math.PI);
+        // ctx.closePath();
+        // ctx.setFillStyle('#FFDC00');
+        // ctx.fill();
+        // ctx.restore();
+
+        ctx.save();
+        ctx.font = 'normal 25px arial';
+        ctx.fillStyle = '#1D1D1D';
+        ctx.textBaseline = 'top';
+        ctx.textAlign = 'right';
+        ctx.fillText('￥团购价' +this.data.goods.price, 200, 730);
+        ctx.restore();
+
+        ctx.save();
+        ctx.font = 'normal 25px arial';
+        ctx.fillStyle = '#1D1D1D';
+        ctx.textBaseline = 'top';
+        ctx.textAlign = 'right';
+        ctx.textDecoration = 'line-through';
+        ctx.fillText('￥市场价' +this.data.goods.original_price, 360, 730);
+        ctx.restore();
+
+        // 写分享来自@xxx
+        // ctx.save();
+        // ctx.font = 'bold 25px arial';
+        // ctx.fillStyle = '#000000';
+        // ctx.textBaseline = 'top';
+        // ctx.textAlign = 'right';
+        // ctx.fillText(`分享自 @${this.data.nickName}`, WIDTH - 63, 1065);
+        // ctx.restore();
+
+        ctx.draw(false, () => {
+          // 生成图片
+          wxp.canvasToTempFilePath({
+            canvasId: 'myCanvas',
+          }).then(({
+            tempFilePath
+          }) => {
+            this.setData({
+              cardCreateImgUrl: tempFilePath
+            });
+          });
+        });
+      });
+    },
+    bindload() {
+        this.setData({loaded:true});
+        wx.hideLoading();
+    },
+    
+    saveImgBefore() {
+    // 查看用户是否有保存相册的权限
+    wx.getSetting({
+        success: res => {
+        if (res.authSetting['scope.writePhotosAlbum'] === false) {
+            this.openConfirm();
+        } else {
+            this.saveImg();
+        }
+        }
+    });
+    },
+    openConfirm() {
+    wx.showModal({
+        content: '检测到您没打开保存相册权限，是否去设置打开？',
+        success: res => {
+        if (res.confirm) {
+            wx.openSetting({
+            success: res => {
+                if (res.authSetting['scope.writePhotosAlbum']) {
+                this.saveImg();
+                }
+            }
+            });
+        } 
+        }
+    });
+    },
+    saveImg() {
+    const {
+        cardCreateImgUrl,
+    } = this.data;
+
+    // 画上logo 会有裁剪的现象
+    wx.showLoading({
+        title: '保存中...',
+        mask: true
+    });
+    wx.saveImageToPhotosAlbum({
+        filePath: cardCreateImgUrl,
+        success() {
+        wx.showToast({
+            title: '保存成功！',
+            icon: 'success'
+        });
+        },
+        fail(err) {
+        wx.hideLoading();
+        }
+    });
+    },
+    /**
+   * @desc 获取当前日期
+   */
+    getToday() {
+        const date = new Date();
+        const zeroize = n => n < 10 ? `0${n}` : n;
+        return `${date.getFullYear()}-${zeroize(date.getMonth() + 1)}-${zeroize(date.getDate())}`;
+    },
+    /**
+     * @desc 获取裁剪后的字符串
+     */
+    getSub(str='',max=1){
+        return str.length > max ? `${str.substr(0, max)}...` : str;
     },
     getGoods: function() {
         var t = this, a = {};

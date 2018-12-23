@@ -376,6 +376,7 @@
                 </view>
             </navigator>
             <block wx:for="{{goods_list}}" wx:key="{{item.id}}">
+            <!-- ==1 -->
                 <block wx:if="{{item.is_end == 1}}">
                     <navigator class="goods-item goods-item-disabled}}">
                         <image class="goods-pic" mode="aspectFill" src="{{item.pic_url}}"></image>
