@@ -1,6 +1,11 @@
-var t = require("../../../utils/helper.js"), a = require("../../../components/quick-navigation/quick-navigation.js"), e = require("../../../components/goods/goods_banner.js"), o = require("../../../components/goods/specifications_model.js"), i = require("../../../wxParse/wxParse.js"), s = 1, r = !1, n = !0, d = 0;
+var t = require("../../../utils/helper.js"), a = require("../../../components/quick-navigation/quick-navigation.js"),
+    e = require("../../../components/goods/goods_banner.js"),
+    o = require("../../../components/goods/specifications_model.js"), i = require("../../../wxParse/wxParse.js"), s = 1,
+    r = !1, n = !0, d = 0;
 import CTB from '../utils/canvas-text-break.js';
 import wxp from '../utils/wxp.js';
+
+var upng = require('../utils/upng');
 let ctx = null;
 Page({
     data: {
@@ -32,18 +37,19 @@ Page({
             s: "--",
             type: 0
         },
-      NEW_WIDTH: 750 + 40,
-      NEW_HEIGHT: 1148 + 40,
-      WIDTH: 750,
-      HEIGHT: 1148,
-      windowWidth: 0,
-      windowHeight: 0,
-      loaded: false,
-      productDetail: {
-        imageUrl: 'http://zs.qdvmai.com/web/uploads/image/store_1/10de99cc795c988828ecb3f7a7ab46c622c3d0a7.jpg'
-      }
+        NEW_WIDTH: 750 + 40,
+        NEW_HEIGHT: 1148 + 40,
+        WIDTH: 750,
+        HEIGHT: 1148,
+        windowWidth: 0,
+        windowHeight: 0,
+        loaded: false,
+        productDetail: {
+            imageUrl: 'http://zs.qdvmai.com/web/uploads/image/store_1/10de99cc795c988828ecb3f7a7ab46c622c3d0a7.jpg'
+        },
+        cardCreateImgUrl: ''
     },
-    onLoad: function(e) {
+    onLoad: function (e) {
         getApp().page.onLoad(this, e), d = 0, s = 1, r = !1, n = !0, a.init(this);
         var o = e.user_id, i = decodeURIComponent(e.scene), c = 0;
         if (void 0 !== o) o; else if ("undefined" == typeof my) {
@@ -65,167 +71,204 @@ Page({
         }), u.getGoods(), u.getRecordList();
     },
     draw() {
-      wx.showLoading({
-        title: '图片加载中...',
-      });
-      const {
-        WIDTH,
-        HEIGHT,
-        productDetail
-      } = this.data;
-      productDetail.imageUrl = this.data.goods.pic_list[0]
-      var ctx = wx.createCanvasContext('myCanvas');
-
-      // 为了显示canvas的边框阴影 宽高都加了40px 然后进行移动位置 20 20
-      ctx.translate(20, 20);
-
-      // 画白色背景
-      ctx.save();
-      ctx.setFillStyle('#fff');
-      ctx.setShadow(0, 0, 15, 'rgba(4, 0, 0, 0.3)');
-      ctx.fillRect(0, 0, WIDTH, 823);
-      ctx.restore();
-
-      // 获取图片信息
-      wxp.getImageInfo({
-        src: productDetail.imageUrl,
-      }).then((res) => {
-          console.log('获取图片信息')
-          console.log(res)
-        const {
-          productDetail
+        var a = this;
+        // wx.showLoading({
+        //     title: '图片加载中...',
+        // });
+        var {
+            WIDTH,
+            HEIGHT,
+            productDetail
         } = this.data;
-        const scale1 = res.width / res.height;
-        const scale2 = 663 / 710;
-        let drawW = 0,
-          drawH = 0,
-          mt = 0,
-          ml = 0;
-        if (scale1 > scale2) {
-          drawH = 710;
-          drawW = 710 * scale1;
-          ml = (663 - drawW) / 2;
-        } else {
-          drawW = 663;
-          drawH = drawW / scale1;
-        }
+        productDetail.imageUrl = a.data.goods.pic_list[0];
+        var ctx = wx.createCanvasContext('myCanvas');
+
+        // 为了显示canvas的边框阴影 宽高都加了40px 然后进行移动位置 20 20
+        ctx.translate(20, 20);
+
+        // 画白色背景
         ctx.save();
-        ctx.beginPath();
-        ctx.strokeStyle = "rgba(0,0,0,0)";
-        ctx.rect(20, 20, 710, 663);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.clip();
-        ctx.drawImage(res.path, ml + 20, mt + 20, drawW, drawH);
+        ctx.setFillStyle('#fff');
+        ctx.setShadow(0, 0, 15, 'rgba(4, 0, 0, 0.3)');
+        ctx.fillRect(0, 0, WIDTH, 823);
         ctx.restore();
 
-        // 画渐变
-        let gradient = ctx.createLinearGradient(0,0,633,0);
-        gradient.addColorStop(0,"#ff4544");
-        gradient.addColorStop(1,"#ffd88d");
-        ctx.fillStyle=gradient;         //设置fillStyle为当前的渐变对象
-        ctx.fillRect(20,683,710,120);      //绘制渐变图形
-        ctx.stroke()
+        var base64 = '';
+        // 获取图片信息
+        wxp.getImageInfo({
+            src: productDetail.imageUrl,
+            // complete(res) {
+            //     console.log(res);
+            // },
+            complete(res) {
+                const scale1 = res.width / res.height;
+                const scale2 = 663 / 710;
+                let drawW = 0,
+                    drawH = 0,
+                    mt = 0,
+                    ml = 0;
+                if (scale1 > scale2) {
+                    drawH = 710;
+                    drawW = 710 * scale1;
+                    ml = (663 - drawW) / 2;
+                } else {
+                    drawW = 663;
+                    drawH = drawW / scale1;
+                }
+                ctx.save();
+                ctx.beginPath();
+                ctx.strokeStyle = "rgba(0,0,0,0)";
+                ctx.rect(20, 20, 710, 663);
+                ctx.closePath();
+                ctx.stroke();
+                ctx.clip();
+                ctx.drawImage(res.path, ml + 20, mt + 20, drawW, drawH);
+                ctx.restore();
 
-        // 画日期前面的圆
-        // ctx.save();
-        // ctx.beginPath();
-        // ctx.arc(WIDTH - 210, 991 + 14, 10, 0, 2 * Math.PI);
-        // ctx.closePath();
-        // ctx.setFillStyle('#FFDC00');
-        // ctx.fill();
-        // ctx.restore();
+                // 画渐变
+                let gradient = ctx.createLinearGradient(0, 0, 633, 0);
+                gradient.addColorStop(0, "#ff4544");
+                gradient.addColorStop(1, "#ffd88d");
+                ctx.fillStyle = gradient;         //设置fillStyle为当前的渐变对象
+                ctx.fillRect(20, 683, 710, 120);      //绘制渐变图形
+                ctx.stroke();
 
-        ctx.save();
-        ctx.font = 'normal 25px arial';
-        ctx.fillStyle = '#1D1D1D';
-        ctx.textBaseline = 'top';
-        ctx.textAlign = 'right';
-        ctx.fillText('￥团购价' +this.data.goods.price, 200, 730);
-        ctx.restore();
+                // 画日期前面的圆
+                // ctx.save();
+                // ctx.beginPath();
+                // ctx.arc(WIDTH - 210, 991 + 14, 10, 0, 2 * Math.PI);
+                // ctx.closePath();
+                // ctx.setFillStyle('#FFDC00');
+                // ctx.fill();
+                // ctx.restore();
 
-        ctx.save();
-        ctx.font = 'normal 25px arial';
-        ctx.fillStyle = '#1D1D1D';
-        ctx.textBaseline = 'top';
-        ctx.textAlign = 'right';
-        ctx.textDecoration = 'line-through';
-        ctx.fillText('￥市场价' +this.data.goods.original_price, 360, 730);
-        ctx.restore();
+                ctx.save();
+                ctx.font = 'normal 25px arial';
+                ctx.fillStyle = '#1D1D1D';
+                ctx.textBaseline = 'top';
+                ctx.textAlign = 'right';
+                ctx.fillText('￥团购价' + a.data.goods.price, 200, 730);
+                ctx.restore();
 
-        ctx.draw(false, () => {
-          // 生成图片
-          wxp.canvasToTempFilePath({
-            canvasId: 'myCanvas',
-          }).then(({
-            tempFilePath
-          }) => {
-            this.setData({
-              cardCreateImgUrl: tempFilePath
-            });
-          });
+                ctx.save();
+                ctx.font = 'normal 25px arial';
+                ctx.fillStyle = '#1D1D1D';
+                ctx.textBaseline = 'top';
+                ctx.textAlign = 'right';
+                ctx.textDecoration = 'line-through';
+                ctx.fillText('￥市场价' + a.data.goods.original_price, 360, 730);
+                ctx.restore();
+
+                ctx.draw(false, () => {
+                    wx.canvasGetImageData({
+                        canvasId: 'myCanvas',
+                        x: 20,
+                        y: 20,
+                        width: 750,
+                        height: 830,
+                        success(res) {
+                            let platform = wx.getSystemInfoSync().platform;
+                            // if (platform == 'ios') {
+                                // 兼容处理：ios获取的图片上下颠倒
+                                // res = this.reverseImgData(res)
+                            // }
+                            // console.log(res);
+                            // 3. png编码
+                            let pngData = upng.encode([res.data.buffer], res.width, res.height);
+                            // 4. base64编码
+                            base64 = wx.arrayBufferToBase64(pngData);
+                            // console.log(base64);
+                            // 保存临时图片
+                            getApp().request({
+                                url: getApp().api.dingshi.share,
+                                method: 'POST',
+                                data: {goods_id: a.data.goods_id, img: base64},
+                                success(res) {
+                                    a.setData({
+                                        cardCreateImgUrl: res.data.path
+                                    })
+                                    getApp().core.hideLoading();
+                                }
+                            });
+                            // a.setData({
+                            //     base64Img: base64
+                            // });
+                        }
+                    })
+
+                    // 生成图片
+                    // wxp.canvasToTempFilePath({
+                    //     canvasId: 'myCanvas',
+                    //     complete(res) {
+                    //         console.log(res);
+                    //         a.setData({
+                    //             cardCreateImgUrl: res.tempFilePath
+                    //         });
+                    //     }
+                    // });
+                });
+            }
         });
-      });
     },
     bindload() {
-        this.setData({loaded:true});
+        this.setData({loaded: true});
         wx.hideLoading();
     },
-    
+
     saveImgBefore() {
-    // 查看用户是否有保存相册的权限
-    wx.getSetting({
-        success: res => {
-        if (res.authSetting['scope.writePhotosAlbum'] === false) {
-            this.openConfirm();
-        } else {
-            this.saveImg();
-        }
-        }
-    });
-    },
-    openConfirm() {
-    wx.showModal({
-        content: '检测到您没打开保存相册权限，是否去设置打开？',
-        success: res => {
-        if (res.confirm) {
-            wx.openSetting({
+        // 查看用户是否有保存相册的权限
+        wx.getSetting({
             success: res => {
-                if (res.authSetting['scope.writePhotosAlbum']) {
-                this.saveImg();
+                if (res.authSetting['scope.writePhotosAlbum'] === false) {
+                    this.openConfirm();
+                } else {
+                    this.saveImg();
                 }
             }
-            });
-        } 
-        }
-    });
+        });
+    },
+    openConfirm() {
+        wx.showModal({
+            content: '检测到您没打开保存相册权限，是否去设置打开？',
+            success: res => {
+                if (res.confirm) {
+                    wx.openSetting({
+                        success: res => {
+                            if (res.authSetting['scope.writePhotosAlbum']) {
+                                this.saveImg();
+                            }
+                        }
+                    });
+                }
+            }
+        });
     },
     saveImg() {
-    const {
-        cardCreateImgUrl,
-    } = this.data;
+        const {
+            cardCreateImgUrl,
+        } = this.data;
 
-    // 画上logo 会有裁剪的现象
-    wx.showLoading({
-        title: '保存中...',
-        mask: true
-    });
-    wx.saveImageToPhotosAlbum({
-        filePath: cardCreateImgUrl,
-        success() {
-        wx.showToast({
-            title: '保存成功！',
-            icon: 'success'
+        // 画上logo 会有裁剪的现象
+        wx.showLoading({
+            title: '保存中...',
+            mask: true
         });
-        },
-        fail(err) {
-        wx.hideLoading();
-        }
-    });
+        wx.saveImageToPhotosAlbum({
+            filePath: cardCreateImgUrl,
+            success() {
+                wx.showToast({
+                    title: '保存成功！',
+                    icon: 'success'
+                });
+            },
+            fail(err) {
+                wx.hideLoading();
+            }
+        });
     },
     /**
-   * @desc 获取当前日期
-   */
+     * @desc 获取当前日期
+     */
     getToday() {
         const date = new Date();
         const zeroize = n => n < 10 ? `0${n}` : n;
@@ -234,16 +277,16 @@ Page({
     /**
      * @desc 获取裁剪后的字符串
      */
-    getSub(str='',max=1){
+    getSub(str = '', max = 1) {
         return str.length > max ? `${str.substr(0, max)}...` : str;
     },
-    getGoods: function() {
+    getGoods: function () {
         var t = this, a = {};
         t.data.goods_id && (a.goods_id = t.data.goods_id),
-        a.scene_type = t.data.scene_type, getApp().request({
+            a.scene_type = t.data.scene_type, getApp().request({
             url: getApp().api.dingshi.details,
             data: a,
-            success: function(a) {
+            success: function (a) {
                 if (0 == a.code) {
                     var e = a.data.detail;
                     i.wxParse("detail", "html", e, t);
@@ -261,7 +304,7 @@ Page({
                     title: "提示",
                     content: a.msg,
                     showCancel: !1,
-                    success: function(t) {
+                    success: function (t) {
                         t.confirm && getApp().core.redirectTo({
                             url: "/pages/index/index"
                         });
@@ -270,7 +313,7 @@ Page({
             }
         });
     },
-    selectDefaultAttr: function() {
+    selectDefaultAttr: function () {
         var t = this;
         if (t.data.goods && 0 === t.data.goods.use_attr) {
             for (var a in t.data.attr_group_list) for (var e in t.data.attr_group_list[a].attr_list) 0 == a && 0 == e && (t.data.attr_group_list[a].attr_list[e].checked = !0);
@@ -295,7 +338,7 @@ Page({
     //         }
     //     }));
     // },
-    getRecordList: function(t) {
+    getRecordList: function (t) {
         var a = this;
         t || r || n && (r = !0, getApp().request({
             url: getApp().api.dingshi.record_list,
@@ -303,7 +346,7 @@ Page({
                 goods_id: a.data.goods_id,
                 page: s
             },
-            success: function(e) {
+            success: function (e) {
                 0 == e.code && (r = !1, s++, a.setData({
                     record_count: e.data.row_count,
                     record_list: t ? a.data.record_list.concat(e.data.list) : e.data.list
@@ -311,7 +354,7 @@ Page({
             }
         }));
     },
-    numberSub: function() {
+    numberSub: function () {
         var t = this, a = t.data.form.number;
         if (a <= 1) return !0;
         a--, t.setData({
@@ -320,7 +363,7 @@ Page({
             }
         });
     },
-    numberAdd: function() {
+    numberAdd: function () {
         var t = this, a = t.data.form.number;
         if (++a > t.data.goods.dingshi.buy_max && 0 != t.data.goods.dingshi.buy_max) return getApp().core.showToast({
             title: "一单限购" + t.data.goods.dingshi.buy_max,
@@ -332,7 +375,7 @@ Page({
             }
         });
     },
-    numberBlur: function(t) {
+    numberBlur: function (t) {
         var a = this, e = t.detail.value;
         e = parseInt(e), isNaN(e) && (e = 1), e <= 0 && (e = 1), e > a.data.goods.dingshi.buy_max && 0 != a.data.goods.dingshi.buy_max && (getApp().core.showToast({
             title: "一单限购" + a.data.goods.dingshi.buy_max + "件",
@@ -343,18 +386,19 @@ Page({
             }
         });
     },
-    addCart: function() {
+    addCart: function () {
         this.submit("ADD_CART");
     },
-    buyNow: function() {
+    buyNow: function () {
         this.data.goods.dingshi ? this.submit("BUY_NOW") : getApp().core.showModal({
             title: "提示",
             content: "秒杀商品当前时间暂无活动",
             showCancel: !1,
-            success: function(t) {}
+            success: function (t) {
+            }
         });
     },
-    submit: function(t) {
+    submit: function (t) {
         var a = this;
         if (!a.data.show_attr_picker) return a.setData({
             show_attr_picker: !0
@@ -403,9 +447,9 @@ Page({
                 attr: JSON.stringify(o),
                 num: a.data.form.number
             },
-            success: function(t) {
+            success: function (t) {
                 //增加购物车数量
-                var cart_count = parseInt(a.data.cart_count) +  parseInt(a.data.form.number);
+                var cart_count = parseInt(a.data.cart_count) + parseInt(a.data.form.number);
                 wx.setStorage({
                     key: "cart_count",
                     data: cart_count,
@@ -441,17 +485,17 @@ Page({
             });
         }
     },
-    hideAttrPicker: function() {
+    hideAttrPicker: function () {
         this.setData({
             show_attr_picker: !1
         });
     },
-    showAttrPicker: function() {
+    showAttrPicker: function () {
         this.setData({
             show_attr_picker: !0
         });
     },
-    favoriteAdd: function() {
+    favoriteAdd: function () {
         var t = this;
         getApp().request({
             url: getApp().api.user.favorite_add,
@@ -459,7 +503,7 @@ Page({
             data: {
                 goods_id: t.data.goods_id
             },
-            success: function(a) {
+            success: function (a) {
                 if (0 == a.code) {
                     var e = t.data.goods;
                     e.is_favorite = 1, t.setData({
@@ -469,7 +513,7 @@ Page({
             }
         });
     },
-    favoriteRemove: function() {
+    favoriteRemove: function () {
         var t = this;
         getApp().request({
             url: getApp().api.user.favorite_remove,
@@ -477,7 +521,7 @@ Page({
             data: {
                 goods_id: t.data.goods_id
             },
-            success: function(a) {
+            success: function (a) {
                 if (0 == a.code) {
                     var e = t.data.goods;
                     e.is_favorite = 0, t.setData({
@@ -487,7 +531,7 @@ Page({
             }
         });
     },
-    tabSwitch: function(t) {
+    tabSwitch: function (t) {
         var a = this;
         "detail" == t.currentTarget.dataset.tab ? a.setData({
             tab_detail: "active",
@@ -497,44 +541,55 @@ Page({
             tab_comment: "active"
         });
     },
-    commentPicView: function(t) {
+    commentPicView: function (t) {
         var a = this, e = t.currentTarget.dataset.index, o = t.currentTarget.dataset.picIndex;
         getApp().core.previewImage({
             current: a.data.comment_list[e].pic_list[o],
             urls: a.data.comment_list[e].pic_list
         });
     },
-    onReady: function(t) {
+    onReady: function (t) {
         getApp().page.onReady(this);
     },
-    onShow: function(t) {
+    onShow: function (t) {
         getApp().page.onShow(this), e.init(this), o.init(this);
     },
-    onHide: function(t) {
+    onHide: function (t) {
         getApp().page.onHide(this);
     },
-    onUnload: function(t) {
+    onUnload: function (t) {
         getApp().page.onUnload(this);
     },
-    onPullDownRefresh: function(t) {
+    onPullDownRefresh: function (t) {
         getApp().page.onPullDownRefresh(this);
     },
-    onReachBottom: function(t) {
+    onReachBottom: function (t) {
         getApp().page.onReachBottom(this), this.getRecordList(!0);
     },
-    onShareAppMessage: function(t) {
+    getBase64() {
+        var a = this;
+        var base64 = a.data.base64Img;
+        while (base64 === undefined || base64.length === 0) {
+            setTimeout(function () {
+                base64 = this.getBase64();
+            }, 2000);
+        }
+        return base64;
+    },
+    onShareAppMessage: function (t) {
         getApp().page.onShareAppMessage(this);
         var a = this, e = getApp().getUser();
         return {
             path: "/pages/dingshi/details/details?goods_id=" + this.data.goods_id + "&user_id=" + e.id,
-            success: function(t) {
+            success: function (t) {
                 1 == ++d && getApp().shareSendCoupon(a);
             },
             title: a.data.goods.name,
-            imageUrl: a.data.goods.pic_list[0]
+            // imageUrl: a.data.goods.pic_list[0]
+            imageUrl: a.data.cardCreateImgUrl
         };
     },
-    play: function(t) {
+    play: function (t) {
         var a = t.target.dataset.url;
         this.setData({
             url: a,
@@ -542,33 +597,38 @@ Page({
             show: !0
         }), getApp().core.createVideoContext("video").play();
     },
-    close: function(t) {
+    close: function (t) {
         if ("video" == t.target.id) return !0;
         this.setData({
             hide: "hide",
             show: !1
         }), getApp().core.createVideoContext("video").pause();
     },
-    hide: function(t) {
+    hide: function (t) {
         0 == t.detail.current ? this.setData({
             img_hide: ""
         }) : this.setData({
             img_hide: "hide"
         });
     },
-    showShareModal: function() {
+    showShareModal: function () {
+        getApp().core.showLoading({
+            title: "正在生成",
+            mask: !0
+        });
+        this.draw();
         this.setData({
             share_modal_active: "active",
             no_scroll: !0
         });
     },
-    shareModalClose: function() {
+    shareModalClose: function () {
         this.setData({
             share_modal_active: "",
             no_scroll: !1
         });
     },
-    getGoodsQrcode: function() {
+    getGoodsQrcode: function () {
         var t = this;
         if (t.setData({
             goods_qrcode_active: "active",
@@ -579,66 +639,66 @@ Page({
             data: {
                 goods_id: t.data.goods_id
             },
-            success: function(a) {
+            success: function (a) {
                 0 == a.code && t.setData({
                     goods_qrcode: a.data.pic_url
                 }), 1 == a.code && (t.goodsQrcodeClose(), getApp().core.showModal({
                     title: "提示",
                     content: a.msg,
                     showCancel: !1,
-                    success: function(t) {
+                    success: function (t) {
                         t.confirm;
                     }
                 }));
             }
         });
     },
-    goodsQrcodeClose: function() {
+    goodsQrcodeClose: function () {
         this.setData({
             goods_qrcode_active: "",
             no_scroll: !1
         });
     },
-    saveGoodsQrcode: function() {
+    saveGoodsQrcode: function () {
         var t = this;
         getApp().core.saveImageToPhotosAlbum ? (getApp().core.showLoading({
             title: "正在保存图片",
             mask: !1
         }), getApp().core.downloadFile({
             url: t.data.goods_qrcode,
-            success: function(t) {
+            success: function (t) {
                 getApp().core.showLoading({
                     title: "正在保存图片",
                     mask: !1
                 }), getApp().core.saveImageToPhotosAlbum({
                     filePath: t.tempFilePath,
-                    success: function() {
+                    success: function () {
                         getApp().core.showModal({
                             title: "提示",
                             content: "商品海报保存成功",
                             showCancel: !1
                         });
                     },
-                    fail: function(t) {
+                    fail: function (t) {
                         getApp().core.showModal({
                             title: "图片保存失败",
                             content: t.errMsg,
                             showCancel: !1
                         });
                     },
-                    complete: function(t) {
+                    complete: function (t) {
                         getApp().core.hideLoading();
                     }
                 });
             },
-            fail: function(a) {
+            fail: function (a) {
                 getApp().core.showModal({
                     title: "图片下载失败",
                     content: a.errMsg + ";" + t.data.goods_qrcode,
                     showCancel: !1
                 });
             },
-            complete: function(t) {
+            complete: function (t) {
                 getApp().core.hideLoading();
             }
         })) : getApp().core.showModal({
@@ -647,18 +707,18 @@ Page({
             showCancel: !1
         });
     },
-    goodsQrcodeClick: function(t) {
+    goodsQrcodeClick: function (t) {
         var a = t.currentTarget.dataset.src;
         getApp().core.previewImage({
-            urls: [ a ]
+            urls: [a]
         });
     },
-    closeCouponBox: function(t) {
+    closeCouponBox: function (t) {
         this.setData({
             get_coupon_list: ""
         });
     },
-    setdingshiTimeOver: function() {
+    setdingshiTimeOver: function () {
         function t() {
             var t = e.data.goods.dingshi.end_time - e.data.goods.dingshi.now_time;
             t = t < 0 ? 0 : t, e.data.goods.dingshi.now_time++, e.setData({
@@ -666,6 +726,7 @@ Page({
                 dingshi_end_time_over: a(t)
             });
         }
+
         function a(t) {
             var a = parseInt(t / 3600), e = parseInt(t % 3600 / 60), o = t % 60, i = 0;
             return a >= 1, {
@@ -675,12 +736,13 @@ Page({
                 type: i
             };
         }
+
         var e = this;
-        t(), setInterval(function() {
+        t(), setInterval(function () {
             t();
         }, 1e3);
     },
-    to_dial: function(t) {
+    to_dial: function (t) {
         var a = this.data.store.contact_tel;
         getApp().core.makePhoneCall({
             phoneNumber: a

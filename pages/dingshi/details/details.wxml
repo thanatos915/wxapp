@@ -229,9 +229,9 @@
                 </view>
             </view>
         </view>
-        <view class="poster__create-wrp">
-            <image src="{{cardCreateImgUrl}}" mode="aspectFill" class="poster__create-img" bindload="bindload"></image>
-        </view>
+        <!--<view class="poster__create-wrp">-->
+            <!--<image src="{{cardCreateImgUrl}}" mode="aspectFill" class="poster__create-img" bindload="bindload"></image>-->
+        <!--</view>-->
         <canvas class="poster__my-canvas" canvas-id="myCanvas" style="width:{{NEW_WIDTH}}px;height:{{NEW_HEIGHT}}px;" />
     </view>
     <include src="/components/footer/footer"></include>
