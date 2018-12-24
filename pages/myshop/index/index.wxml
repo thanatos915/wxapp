@@ -57,6 +57,15 @@
                     </button>
                 </form>
             </view>
+            <view class="flex-grow-0 menu-item">
+                <form bindsubmit="navigatorSubmit" reportSubmit="true">
+                    <input name="url" style="display: none" value="/pages/myshop/order/order?status=1"></input>
+                    <button class="block-button" formType="submit">
+                        <image src="/mch/images/menu-3.png"></image>
+                        <view>订单管理</view>
+                    </button>
+                </form>
+            </view>
             <!--
             <view class="flex-grow-0 menu-item">
                 <form bindsubmit="navigatorSubmit" reportSubmit="true">

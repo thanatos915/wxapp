@@ -39,6 +39,7 @@
     "pages/web/web",
     "pages/shop/shop",
     "pages/myshop/index/index",
+    "pages/myshop/order/order",
     "pages/myshop/join/join",
     "pages/myshop/send/send",
     "pages/myshop/account/account",

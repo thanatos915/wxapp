@@ -332,8 +332,7 @@
                                     </view>
                                 </navigator>
                             </block>
-                            <navigator bindtap="callTel" class="option-item flex-grow-0 style" data-tel="{{item.tel}}"
-                                       wx:elif="{{item.open_type=='tel'}}">
+                            <navigator bindtap="callTel" class="option-item flex-grow-0 style" data-tel="{{item.tel}}" wx:elif="{{item.open_type=='tel'}}">
                                 <view>
                                     <view class="flex-x-center">
                                         <image class="option-icon" src="{{item.icon}}"></image>
