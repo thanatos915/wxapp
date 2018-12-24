@@ -5,6 +5,7 @@ var t = require("../../../utils/helper.js"), a = require("../../../components/qu
 import CTB from '../utils/canvas-text-break.js';
 import wxp from '../utils/wxp.js';
 
+var html2canvas = require('../utils/html2canvas.min');
 var upng = require('../utils/upng');
 let ctx = null;
 Page({
@@ -37,10 +38,10 @@ Page({
             s: "--",
             type: 0
         },
-        NEW_WIDTH: 750 + 40,
-        NEW_HEIGHT: 1148 + 40,
-        WIDTH: 750,
-        HEIGHT: 1148,
+        NEW_WIDTH: 375,
+        NEW_HEIGHT: 574,
+        WIDTH: 375,
+        HEIGHT: 574,
         windowWidth: 0,
         windowHeight: 0,
         loaded: false,
@@ -51,6 +52,11 @@ Page({
     },
     onLoad: function (e) {
         getApp().page.onLoad(this, e), d = 0, s = 1, r = !1, n = !0, a.init(this);
+        // 处理分享大小
+        // console.log((this.data.x * 0.8).toString() + 'rpx');
+        this.setData({
+            shareY: (this.data.x * 0.8 - 54).toString() + 'px'
+        });
         var o = e.user_id, i = decodeURIComponent(e.scene), c = 0;
         if (void 0 !== o) o; else if ("undefined" == typeof my) {
             if (void 0 !== e.scene) {
@@ -84,13 +90,13 @@ Page({
         var ctx = wx.createCanvasContext('myCanvas');
 
         // 为了显示canvas的边框阴影 宽高都加了40px 然后进行移动位置 20 20
-        ctx.translate(20, 20);
+        // ctx.translate(20, 20);
 
         // 画白色背景
         ctx.save();
         ctx.setFillStyle('#fff');
         ctx.setShadow(0, 0, 15, 'rgba(4, 0, 0, 0.3)');
-        ctx.fillRect(0, 0, WIDTH, 823);
+        ctx.fillRect(0, 0, WIDTH, HEIGHT + 60);
         ctx.restore();
 
         var base64 = '';
@@ -102,27 +108,26 @@ Page({
             // },
             complete(res) {
                 const scale1 = res.width / res.height;
-                const scale2 = 663 / 710;
+                const scale2 = WIDTH / res.width;
                 let drawW = 0,
                     drawH = 0,
+                    drawH_total = 0,
                     mt = 0,
                     ml = 0;
-                if (scale1 > scale2) {
-                    drawH = 710;
-                    drawW = 710 * scale1;
-                    ml = (663 - drawW) / 2;
-                } else {
-                    drawW = 663;
-                    drawH = drawW / scale1;
-                }
+
+                drawW = WIDTH;
+                drawH = res.height * scale2;
+                drawH_total = drawH +60;
+
+
                 ctx.save();
                 ctx.beginPath();
                 ctx.strokeStyle = "rgba(0,0,0,0)";
-                ctx.rect(20, 20, 710, 663);
+                ctx.rect(0, 0, drawW, drawH_total);
                 ctx.closePath();
                 ctx.stroke();
                 ctx.clip();
-                ctx.drawImage(res.path, ml + 20, mt + 20, drawW, drawH);
+                ctx.drawImage(res.path, 0, 0, drawW, drawH);
                 ctx.restore();
 
                 // 画渐变
@@ -130,7 +135,7 @@ Page({
                 gradient.addColorStop(0, "#ff4544");
                 gradient.addColorStop(1, "#ffd88d");
                 ctx.fillStyle = gradient;         //设置fillStyle为当前的渐变对象
-                ctx.fillRect(20, 683, 710, 120);      //绘制渐变图形
+                ctx.fillRect(0, drawH, drawW, 60);      //绘制渐变图形
                 ctx.stroke();
 
                 // 画日期前面的圆
@@ -147,7 +152,7 @@ Page({
                 ctx.fillStyle = '#1D1D1D';
                 ctx.textBaseline = 'top';
                 ctx.textAlign = 'right';
-                ctx.fillText('￥团购价' + a.data.goods.price, 200, 730);
+                ctx.fillText('团购价:￥' + a.data.goods.price, 180, drawH_total - 40);
                 ctx.restore();
 
                 ctx.save();
@@ -156,23 +161,17 @@ Page({
                 ctx.textBaseline = 'top';
                 ctx.textAlign = 'right';
                 ctx.textDecoration = 'line-through';
-                ctx.fillText('￥市场价' + a.data.goods.original_price, 360, 730);
+                ctx.fillText('市场价:￥' + a.data.goods.original_price, 320, drawH_total - 40);
                 ctx.restore();
 
                 ctx.draw(false, () => {
                     wx.canvasGetImageData({
                         canvasId: 'myCanvas',
-                        x: 20,
-                        y: 20,
-                        width: 400,
-                        height: 400,
+                        x: 0,
+                        y: 0,
+                        width: drawW,
+                        height: drawH_total,
                         success(res) {
-                            let platform = wx.getSystemInfoSync().platform;
-                            // if (platform == 'ios') {
-                                // 兼容处理：ios获取的图片上下颠倒
-                                // res = this.reverseImgData(res)
-                            // }
-                            // console.log(res);
                             // 3. png编码
                             let pngData = upng.encode([res.data.buffer], res.width, res.height);
                             // 4. base64编码
@@ -184,10 +183,12 @@ Page({
                                 method: 'POST',
                                 data: {goods_id: a.data.goods_id, img: base64},
                                 success(res) {
-                                    a.setData({
-                                        cardCreateImgUrl: res.data.path
-                                    })
                                     getApp().core.hideLoading();
+                                    if (res.code == 0) {
+                                        a.setData({
+                                            cardCreateImgUrl: res.data.path
+                                        });
+                                    }
                                 }
                             });
                             // a.setData({
@@ -576,19 +577,20 @@ Page({
         }
         return base64;
     },
-    onShareAppMessage: function (t) {
-        getApp().page.onShareAppMessage(this);
-        var a = this, e = getApp().getUser();
-        return {
-            path: "/pages/dingshi/details/details?goods_id=" + this.data.goods_id + "&user_id=" + e.id,
-            success: function (t) {
-                1 == ++d && getApp().shareSendCoupon(a);
-            },
-            title: a.data.goods.name,
-            // imageUrl: a.data.goods.pic_list[0]
-            imageUrl: a.data.cardCreateImgUrl
-        };
-    },
+    // onShareAppMessage: function (t) {
+    //     getApp().page.onShareAppMessage(this);
+    //     var a = this, e = getApp().getUser();
+    //     console.log(a.data.cardCreateImgUrl);
+    //     return {
+    //         path: "/pages/dingshi/details/details?goods_id=" + this.data.goods_id + "&user_id=" + e.id,
+    //         success: function (t) {
+    //             1 == ++d && getApp().shareSendCoupon(a);
+    //         },
+    //         title: a.data.goods.name,
+    //         // imageUrl: a.data.goods.pic_list[0]
+    //         imageUrl: a.data.cardCreateImgUrl
+    //     };
+    // },
     play: function (t) {
         var a = t.target.dataset.url;
         this.setData({
@@ -612,11 +614,11 @@ Page({
         });
     },
     showShareModal: function () {
-        getApp().core.showLoading({
-            title: "正在生成",
-            mask: !0
-        });
-        this.draw();
+        // getApp().core.showLoading({
+        //     title: "正在生成",
+        //     mask: !0
+        // });
+        // this.draw();
         this.setData({
             share_modal_active: "active",
             no_scroll: !0
