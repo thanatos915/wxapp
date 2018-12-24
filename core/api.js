@@ -33,6 +33,7 @@ var e = require("../siteinfo.js"), r = "", o = {
         details: r + "dingshi/details",
         record_list: r + "dingshi/record-list",
         submit_preview: r + "dingshi/submit-preview",
+        share: r + "dingshi/save-share-img",
     },
     cart: {
         list: r + "cart/list",
