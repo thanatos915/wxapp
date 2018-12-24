@@ -164,8 +164,8 @@ Page({
                         canvasId: 'myCanvas',
                         x: 20,
                         y: 20,
-                        width: 750,
-                        height: 830,
+                        width: 400,
+                        height: 400,
                         success(res) {
                             let platform = wx.getSystemInfoSync().platform;
                             // if (platform == 'ios') {
@@ -177,7 +177,7 @@ Page({
                             let pngData = upng.encode([res.data.buffer], res.width, res.height);
                             // 4. base64编码
                             base64 = wx.arrayBufferToBase64(pngData);
-                            // console.log(base64);
+                            console.log(base64);
                             // 保存临时图片
                             getApp().request({
                                 url: getApp().api.dingshi.share,
