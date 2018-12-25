@@ -109,7 +109,7 @@
                             </block>
                         </block>
                         <block wx:else>
-                            <view class="flex-grow-1" wx:if="{{order.is_send==0}}">
+                            <view class="flex-grow-1" wx:if="{{order.is_pay==0}}">
                                 <text wx:if="{{order.apply_delete==1}}">取消申请中</text>
                                 <button bindtap="orderRevoke" class="order-option-btn" data-id="{{order.order_id}}" wx:else>取消
                                 </button>
@@ -118,9 +118,9 @@
                                 <button bindtap="orderPay" class="order-option-btn" data-id="{{order.order_id}}" data-index="{{index}}">付款</button>
                             </view>
                             <view class="flex-grow-1" wx:if="{{(order.is_pay==1||order.pay_type==2)&&order.is_offline==1&&order.is_send==0&&order.apply_delete==0}}">
-                                <view bindtap="orderQrcode" class="order-option-btn clerk flex-y-center" data-index="{{index}}">
-                                    <image data-index="{{index}}" src="{{__wxapp_img.store.clerk.url}}" style="width:26rpx;height:26rpx;margin-right:10rpx"></image> 核销码
-                                </view>
+                                <!--<view bindtap="orderQrcode" class="order-option-btn clerk flex-y-center" data-index="{{index}}">-->
+                                    <!--<image data-index="{{index}}" src="{{__wxapp_img.store.clerk.url}}" style="width:26rpx;height:26rpx;margin-right:10rpx"></image> 核销码-->
+                                <!--</view>-->
                             </view>
                             <view class="flex-grow-1 flex-row" wx:if="{{order.is_send==1&&order.is_confirm==0}}">
                                 <view class="flex-grow-0" wx:if="{{order.express}}">

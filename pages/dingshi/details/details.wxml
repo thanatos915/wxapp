@@ -187,7 +187,7 @@
             <view class="share-modal-body">
                 <view class="flex-row">
                     <view class="flex-grow-1 flex-x-center">
-                        <button class="share-bottom" openType="share" style="height:100%">
+                        <button class="share-bottom" open-type="share" style="height:100%">
                             <image src="{{__wxapp_img.share.friend.url}}"></image>
                             <view>分享给朋友</view>
                         </button>

@@ -2,11 +2,6 @@ var t = require("../../../utils/helper.js"), a = require("../../../components/qu
     e = require("../../../components/goods/goods_banner.js"),
     o = require("../../../components/goods/specifications_model.js"), i = require("../../../wxParse/wxParse.js"), s = 1,
     r = !1, n = !0, d = 0;
-import CTB from '../utils/canvas-text-break.js';
-import wxp from '../utils/wxp.js';
-
-var html2canvas = require('../utils/html2canvas.min');
-var upng = require('../utils/upng');
 let ctx = null;
 Page({
     data: {
@@ -577,20 +572,19 @@ Page({
         }
         return base64;
     },
-    // onShareAppMessage: function (t) {
-    //     getApp().page.onShareAppMessage(this);
-    //     var a = this, e = getApp().getUser();
-    //     console.log(a.data.cardCreateImgUrl);
-    //     return {
-    //         path: "/pages/dingshi/details/details?goods_id=" + this.data.goods_id + "&user_id=" + e.id,
-    //         success: function (t) {
-    //             1 == ++d && getApp().shareSendCoupon(a);
-    //         },
-    //         title: a.data.goods.name,
-    //         // imageUrl: a.data.goods.pic_list[0]
-    //         imageUrl: a.data.cardCreateImgUrl
-    //     };
-    // },
+    onShareAppMessage: function (t) {
+        getApp().page.onShareAppMessage(this);
+        var a = this, e = getApp().getUser();
+        return {
+            path: "/pages/dingshi/details/details?goods_id=" + this.data.goods_id + "&user_id=" + e.id,
+            success: function (t) {
+                1 == ++d && getApp().shareSendCoupon(a);
+            },
+            title: a.data.goods.name,
+            // imageUrl: a.data.goods.pic_list[0]
+            // imageUrl: a.data.cardCreateImgUrl
+        };
+    },
     play: function (t) {
         var a = t.target.dataset.url;
         this.setData({

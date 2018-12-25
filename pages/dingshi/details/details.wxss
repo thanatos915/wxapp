@@ -295,7 +295,7 @@ view {
 
 .share-modal.active {
     transform: translateY(0);
-    background: rgba(0,0,0,.5);
+    /*background: rgba(0,0,0,.5);*/
 }
 
 .share-modal.active .share-modal-body {
@@ -450,7 +450,7 @@ view {
     border-radius: 10rpx;
 }
 .miaosha-bar .text-more-2 {
-  font-size: 20rpx;
+  font-size: 19rpx;
 }
 .miaosha-bar .text-more-3 {
   font-size: 24rpx;
