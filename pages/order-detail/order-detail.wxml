@@ -38,7 +38,7 @@
             <view class="block flex-row" wx:if="{{order.is_offline==1}}">
                 <view class="flex-grow-1">
                     <view class="flex-grow-1">门店名称：{{order.shop.name}}</view>
-                    <view class="flex-grow-1">联系电话：{{order.shop.mobile}}</view>
+                    <view class="flex-grow-1" wx:if="{{order.status !== '订单未付款'}}">联系电话：{{order.shop.mobile}}</view>
                     <view class="flex-grow-1">门店地址：{{order.shop.address}}</view>
                 </view>
                 <view class="flex-grow-0 flex-y-center" wx:if="{{order.shop.longitude}}">

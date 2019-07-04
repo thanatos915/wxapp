@@ -129,7 +129,7 @@
                             </view>
                             <view class="flex-grow-1" style="text-align:right">
                                 <view>{{item.shop.name}}</view>
-                                <view>{{item.shop.mobile}}</view>
+<!--                                <view>{{item.shop.mobile}}</view>-->
                                 <view>{{item.shop.address}}</view>
                             </view>
                             <view class="flex-grow-0 flex-y-center" wx:if="{{item.shop_list.length>1}}">
@@ -245,9 +245,9 @@
                             </view>
                             <view class="flex-grow-0" wx:if="{{item.distance!=-1}}">{{item.distance}}</view>
                         </view>
-                        <view class="flex-row" style="margin-bottom: 20rpx">
-                            <view class="flex-grow-1">电话：{{item.mobile}}</view>
-                        </view>
+<!--                        <view class="flex-row" style="margin-bottom: 20rpx">-->
+<!--                            <view class="flex-grow-1">电话：{{item.mobile}}</view>-->
+<!--                        </view>-->
                         <view>地址：{{item.address}}</view>
                     </view>
                 </view>

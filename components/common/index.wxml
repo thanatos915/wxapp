@@ -380,7 +380,7 @@
                 <block wx:if="{{item.is_end == 1}}">
                     <navigator class="goods-item goods-item-disabled}}">
                         <image class="goods-pic" mode="aspectFill" src="{{item.pic_url}}"></image>
-                        <view class="goods-icon-hot">爆款</view>
+<!--                        <view class="goods-icon-hot">爆款</view>-->
                         <view class="goods-list-time">距结束 {{item.time}}</view>
                         <view class='goods-list-tips'>已结束</view>
                         <view class="goods-info" style="padding:5rpx 20rpx 15rpx;">
@@ -412,7 +412,7 @@
                 <block wx:else>
                     <navigator class="goods-item}}" openType="navigate" url="/pages/dingshi/details/details?goods_id={{item.id}}" >
                         <image class="goods-pic" mode="aspectFill" src="{{item.pic_url}}"></image>
-                        <view class="goods-icon-hot">爆款</view>
+<!--                        <view class="goods-icon-hot">爆款</view>-->
                         <view class="goods-list-time">距结束 {{item.time}}</view>
                         <!--<view class='goods-list-tips'>已结束</view>-->
                         <view class="goods-info" style="padding:5rpx 20rpx 15rpx;">
