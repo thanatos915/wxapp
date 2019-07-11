@@ -135,5 +135,11 @@
     "navigationBarTextStyle": "black",
     "backgroundColor": "#EFEFF4"
   },
-  "debug": false
+  "debug": false,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "需要您的位置授权"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
 }
