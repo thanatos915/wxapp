@@ -30,19 +30,19 @@
                                 </view>
                             </view>
                         </view>
-                        <view class="flex-grow-0 flex-y-center miaosha-bar-right">
-                            <view>
-                                <view class="time-over-text" wx:if="{{dingshi_end_time_over.type==0}}">距离结束仅剩</view>
-                                <view class="time-over-text" wx:if="{{dingshi_end_time_over.type==1}}">距离开始仅剩</view>
-                                <view class="timer">
-                                    <text class="timer-num">{{dingshi_end_time_over.h}}</text>
-                                    <text class="timer-split">:</text>
-                                    <text class="timer-num">{{dingshi_end_time_over.m}}</text>
-                                    <text class="timer-split">:</text>
-                                    <text class="timer-num">{{dingshi_end_time_over.s}}</text>
-                                </view>
-                            </view>
-                        </view>
+<!--                        <view class="flex-g&lt;!&ndash;&ndash;&gt;row-0 flex-y-center miaosha-bar-right">-->
+<!--                            <view>-->
+<!--                                <view class="time-over-text" wx:if="{{dingshi_end_time_over.type==0}}">距离结束仅剩</view>-->
+<!--                                <view class="time-over-text" wx:if="{{dingshi_end_time_over.type==1}}">距离开始仅剩</view>-->
+<!--                                <view class="timer">-->
+<!--                                    <text class="timer-num">{{dingshi_end_time_over.h}}</text>-->
+<!--                                    <text class="timer-split">:</text>-->
+<!--                                    <text class="timer-num">{{dingshi_end_time_over.m}}</text>-->
+<!--                                    <text class="timer-split">:</text>-->
+<!--                                    <text class="timer-num">{{dingshi_end_time_over.s}}</text>-->
+<!--                                </view>-->
+<!--                            </view>-->
+<!--                        </view>-->
                     </view>
                 </view>
                 <view class="goods-info" style="background: #fff;padding:32rpx 24rpx;border-bottom: 1rpx solid #eee ">
