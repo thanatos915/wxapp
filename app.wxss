@@ -747,6 +747,21 @@ button[plain] {
     flex-shrink: 1;
 }
 
+.cancel-modal-btn {
+    height: 100%;
+    text-align: center;
+    line-height: 88rpx;
+    color: #666;
+    font-size: 15pt;
+    border-right: 1rpx solid #e2e2e2;
+    min-width: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+}
+
 .new-modal-btn:last-child {
     color: #ff4544;
     border-right: none;

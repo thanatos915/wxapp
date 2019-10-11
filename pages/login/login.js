@@ -19,6 +19,9 @@ Page({
             fail: function(e) {}
         });
     },
+    closeLogin: function () {
+
+    },
     myLogin: function() {
         var e = this;
         "my" === getApp().platform && my.getAuthCode({
@@ -40,7 +43,7 @@ Page({
             data: e,
             success: function(e) {
                 if (0 == e.code) {
-                    getApp().setUser(e.data), getApp().core.setStorageSync(getApp().const.ACCESS_TOKEN, e.data.access_token), 
+                    getApp().setUser(e.data), getApp().core.setStorageSync(getApp().const.ACCESS_TOKEN, e.data.access_token),
                     getApp().trigger.run(getApp().trigger.events.login);
                     var t = getApp().core.getStorageSync(getApp().const.LOGIN_PRE_PAGE);
                     t && t.route ? getApp().core.redirectTo({

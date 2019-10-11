@@ -51,6 +51,9 @@ var t = [ {
     onShow: function(e) {
         e.scene && (this.onShowData = e), e && e.query && (this.query = e.query);
     },
+    closeLogin: function() {
+        console.log(11);
+    },
     is_login: !1
 };
 
@@ -83,11 +86,11 @@ n.webRoot = a, n.getauth = function(e) {
     e.request({
         url: t.default.store,
         success: function(t) {
-            0 == t.code && (n.setStorageSync(e.const.STORE, t.data.store), n.setStorageSync(e.const.STORE_NAME, t.data.store_name), 
-            n.setStorageSync(e.const.SHOW_CUSTOMER_SERVICE, t.data.show_customer_service), n.setStorageSync(e.const.CONTACT_TEL, t.data.contact_tel), 
-            n.setStorageSync(e.const.SHARE_SETTING, t.data.share_setting), e.permission_list = t.data.permission_list, 
-            n.setStorageSync(e.const.WXAPP_IMG, t.data.wxapp_img), n.setStorageSync(e.const.WX_BAR_TITLE, t.data.wx_bar_title), 
-            n.setStorageSync(e.const.ALIPAY_MP_CONFIG, t.data.alipay_mp_config), n.setStorageSync(e.const.STORE_CONFIG, t.data), 
+            0 == t.code && (n.setStorageSync(e.const.STORE, t.data.store), n.setStorageSync(e.const.STORE_NAME, t.data.store_name),
+            n.setStorageSync(e.const.SHOW_CUSTOMER_SERVICE, t.data.show_customer_service), n.setStorageSync(e.const.CONTACT_TEL, t.data.contact_tel),
+            n.setStorageSync(e.const.SHARE_SETTING, t.data.share_setting), e.permission_list = t.data.permission_list,
+            n.setStorageSync(e.const.WXAPP_IMG, t.data.wxapp_img), n.setStorageSync(e.const.WX_BAR_TITLE, t.data.wx_bar_title),
+            n.setStorageSync(e.const.ALIPAY_MP_CONFIG, t.data.alipay_mp_config), n.setStorageSync(e.const.STORE_CONFIG, t.data),
             setTimeout(function(n) {
                 e.config = t.data, e.configReadyCall && e.configReadyCall(t.data);
             }, 1e3));
@@ -95,5 +98,7 @@ n.webRoot = a, n.getauth = function(e) {
         complete: function() {}
     });
 };
+
+console.log(n)
 
 App(n);

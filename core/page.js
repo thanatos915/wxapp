@@ -5,9 +5,9 @@ module.exports = {
     onLoad: function(e, t) {
         this.currentPage = e, this.currentPageOptions = t;
         var o = this;
-        this.setUserInfo(), this.setWxappImg(), this.setStore(), this.setParentId(t), this.getNavigationBarColor(), 
-        this.setDeviceInfo(), this.setPageClasses(), this.setPageNavbar(), this.setBarTitle(), 
-        "function" == typeof e.onSelfLoad && e.onSelfLoad(t), o._setFormIdSubmit(), "undefined" != typeof my && "pages/login/login" != e.route && t && (e.options || (e.options = t), 
+        this.setUserInfo(), this.setWxappImg(), this.setStore(), this.setParentId(t), this.getNavigationBarColor(),
+        this.setDeviceInfo(), this.setPageClasses(), this.setPageNavbar(), this.setBarTitle(),
+        "function" == typeof e.onSelfLoad && e.onSelfLoad(t), o._setFormIdSubmit(), "undefined" != typeof my && "pages/login/login" != e.route && t && (e.options || (e.options = t),
         getApp().core.setStorageSync("last_page_options", t)), e.navigatorClick = function(t) {
             o.navigatorClick(t, e);
         }, e.setData({
@@ -120,7 +120,7 @@ module.exports = {
                 var n = getApp().query;
                 o = n.uid;
             }
-            o && (getApp().core.setStorageSync(getApp().const.PARENT_ID, o), getApp().trigger.remove(getApp().trigger.events.login, "TRY_TO_BIND_PARENT"), 
+            o && (getApp().core.setStorageSync(getApp().const.PARENT_ID, o), getApp().trigger.remove(getApp().trigger.events.login, "TRY_TO_BIND_PARENT"),
             getApp().trigger.add(getApp().trigger.events.login, "TRY_TO_BIND_PARENT", function() {
                 t.bindParent({
                     parent_id: o,
@@ -130,7 +130,7 @@ module.exports = {
         }
     },
     showToast: function(e) {
-        var t = this.currentPage, o = e.duration || 2500, a = e.title || "", n = (e.success, 
+        var t = this.currentPage, o = e.duration || 2500, a = e.title || "", n = (e.success,
         e.fail, e.complete || null);
         t._toast_timer && clearTimeout(t._toast_timer), t.setData({
             _toast: {
@@ -182,7 +182,7 @@ module.exports = {
     },
     setPageClasses: function() {
         var e = this.currentPage, t = e.data.__device;
-        e.data._navbar && e.data._navbar.navs && e.data._navbar.navs.length > 0 && (t += " show_navbar"), 
+        e.data._navbar && e.data._navbar.navs && e.data._navbar.navs.length > 0 && (t += " show_navbar"),
         t && e.setData({
             __page_classes: t
         });
@@ -203,7 +203,7 @@ module.exports = {
             return e <= 0 && (e = 0), e < 10 ? "0" + e : e;
         }
         var o = "00", a = "00", n = "00", i = 0;
-        return e >= 86400 && (i = parseInt(e / 86400), e %= 86400), e < 86400 && (n = parseInt(e / 3600), 
+        return e >= 86400 && (i = parseInt(e / 86400), e %= 86400), e < 86400 && (n = parseInt(e / 3600),
         e %= 3600), e < 3600 && (a = parseInt(e / 60), e %= 60), e < 60 && (o = e), {
             d: i,
             h: t(n),
@@ -222,7 +222,7 @@ module.exports = {
         e.request({
             url: e.api.default.navigation_bar_color,
             success: function(o) {
-                0 == o.code && (e.core.setStorageSync(getApp().const.NAVIGATION_BAR_COLOR, o.data), 
+                0 == o.code && (e.core.setStorageSync(getApp().const.NAVIGATION_BAR_COLOR, o.data),
                 t.setNavigationBarColor(), e.navigateBarColorCall && "function" == typeof e.navigateBarColorCall && e.navigateBarColorCall(o));
             }
         });
@@ -293,7 +293,7 @@ module.exports = {
             switch (s && s.length || (s = []), s.push({
                 time: getApp().helper.time(),
                 form_id: a
-            }), getApp().core.setStorageSync(getApp().const.FORM_ID_LIST, s), console.log("self[bindtap]--\x3e", t[n]), 
+            }), getApp().core.setStorageSync(getApp().const.FORM_ID_LIST, s), console.log("self[bindtap]--\x3e", t[n]),
             t[n] && "function" == typeof t[n] && t[n](e), i) {
               case "navigate":
                 r && getApp().core.navigateTo({
@@ -368,6 +368,9 @@ module.exports = {
             }
         });
     },
+    closeLogin: function (){
+        this.setUserInfoShowFalse()
+    },
     unionLogin: function(e) {
         var t = this.currentPage, o = this;
         getApp().core.showLoading({
@@ -381,7 +384,7 @@ module.exports = {
                 if (0 == e.code) {
                     t.setData({
                         __user_info: e.data
-                    }), getApp().setUser(e.data), getApp().core.setStorageSync(getApp().const.ACCESS_TOKEN, e.data.access_token), 
+                    }), getApp().setUser(e.data), getApp().core.setStorageSync(getApp().const.ACCESS_TOKEN, e.data.access_token),
                     getApp().trigger.run(getApp().trigger.events.login);
                     var a = getApp().core.getStorageSync(getApp().const.STORE);
                     e.data.binding || !a.option.phone_auth || a.option.phone_auth && 0 == a.option.phone_auth ? getApp().core.redirectTo({

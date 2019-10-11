@@ -55,13 +55,13 @@ Page({
         var a = this;
         if (t.currentTarget.dataset.type && "mch" == t.currentTarget.dataset.type) {
             var i = t.currentTarget.dataset.mchIndex, c = t.currentTarget.dataset.index;
-            a.data.mch_list[i].list[c].num = a.data.mch_list[i].list[c].num - 1, a.data.mch_list[i].list[c].price = a.data.mch_list[i].list[c].num * a.data.mch_list[i].list[c].unitPrice, 
+            a.data.mch_list[i].list[c].num = a.data.mch_list[i].list[c].num - 1, a.data.mch_list[i].list[c].price = a.data.mch_list[i].list[c].num * a.data.mch_list[i].list[c].unitPrice,
             a.setData({
                 mch_list: a.data.mch_list
             });
         } else {
             var e = a.data.cart_list;
-            for (var s in e) t.currentTarget.id == e[s].cart_id && (e[s].num = a.data.cart_list[s].num - 1, 
+            for (var s in e) t.currentTarget.id == e[s].cart_id && (e[s].num = a.data.cart_list[s].num - 1,
             e[s].price = a.data.cart_list[s].unitPrice * e[s].num, a.setData({
                 cart_list: e
             }));
@@ -72,13 +72,13 @@ Page({
         var a = this;
         if (t.currentTarget.dataset.type && "mch" == t.currentTarget.dataset.type) {
             var i = t.currentTarget.dataset.mchIndex, c = t.currentTarget.dataset.index;
-            a.data.mch_list[i].list[c].num = a.data.mch_list[i].list[c].num + 1, a.data.mch_list[i].list[c].price = a.data.mch_list[i].list[c].num * a.data.mch_list[i].list[c].unitPrice, 
+            a.data.mch_list[i].list[c].num = a.data.mch_list[i].list[c].num + 1, a.data.mch_list[i].list[c].price = a.data.mch_list[i].list[c].num * a.data.mch_list[i].list[c].unitPrice,
             a.setData({
                 mch_list: a.data.mch_list
             });
         } else {
             var e = a.data.cart_list;
-            for (var s in e) t.currentTarget.id == e[s].cart_id && (e[s].num = a.data.cart_list[s].num + 1, 
+            for (var s in e) t.currentTarget.id == e[s].cart_id && (e[s].num = a.data.cart_list[s].num + 1,
             e[s].price = a.data.cart_list[s].unitPrice * e[s].num, a.setData({
                 cart_list: e
             }));
@@ -89,7 +89,7 @@ Page({
         var a = this, i = t.currentTarget.dataset.index, c = t.currentTarget.dataset.type, e = t.currentTarget.dataset.mchIndex;
         "self" == c && (a.data.cart_list[i].checked = !a.data.cart_list[i].checked, a.setData({
             cart_list: a.data.cart_list
-        })), "mch" == c && (a.data.mch_list[e].list[i].checked = !a.data.mch_list[e].list[i].checked, 
+        })), "mch" == c && (a.data.mch_list[e].list[i].checked = !a.data.mch_list[e].list[i].checked,
         a.setData({
             mch_list: a.data.mch_list
         })), a.updateTotalPrice();
@@ -124,7 +124,7 @@ Page({
         });
         for (var l in i) {
             var d = [], n = [];
-            if (i[l].list && i[l].list.length) for (var h in i[l].list) i[l].list[h].checked && (d.push(i[l].list[h].cart_id), 
+            if (i[l].list && i[l].list.length) for (var h in i[l].list) i[l].list[h].checked && (d.push(i[l].list[h].cart_id),
             n.push({
                 cart_id: i[l].list[h].cart_id
             }));
@@ -241,5 +241,10 @@ Page({
             });
         }
         a.updateTotalPrice();
-    }
+    },
+    closeLogin: function (){
+        this.setData({
+            user_info_show: !1
+        })
+    },
 });

@@ -23,6 +23,7 @@
             <view class="flex-x-center">
                 <view>
                     <button bindgetuserinfo="getUserInfo" bindtap="myLogin" class="btn new-modal-btn" openType="getUserInfo" style="background-color:#04be01;width:500rpx;height:80rpx;border-radius:80rpx;color:#fff;margin-bottom:40rpx;">确认</button>
+                    <button bindtap="closeLogin" class="btn new-modal-btn" style="background-color:#ffffff;width:500rpx;height:80rpx;border-radius:80rpx;color:#000;margin-bottom:40rpx;">取消</button>
                 </view>
             </view>
         </view>

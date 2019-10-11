@@ -60,7 +60,7 @@ Page({
         o && (o.act_modal_list = [], a.setData(o)), getApp().request({
             url: getApp().api.default.index,
             success: function(t) {
-                0 == t.code && (e ? e = !1 : t.data.act_modal_list = [], a.setData(t.data), getApp().core.setStorageSync(getApp().const.PAGE_INDEX_INDEX, t.data), 
+                0 == t.code && (e ? e = !1 : t.data.act_modal_list = [], a.setData(t.data), getApp().core.setStorageSync(getApp().const.PAGE_INDEX_INDEX, t.data),
                 a.miaoshaTimer());
                 a.goodsAll({
                     currentTarget: {
@@ -161,7 +161,7 @@ Page({
     miaoshaTimer: function() {
         var t = this;
         t.data.miaosha && 0 != t.data.miaosha.rest_time && (t.data.miaosha.ms_next || (o = setInterval(function() {
-            t.data.miaosha.rest_time > 0 ? (t.data.miaosha.rest_time = t.data.miaosha.rest_time - 1, 
+            t.data.miaosha.rest_time > 0 ? (t.data.miaosha.rest_time = t.data.miaosha.rest_time - 1,
             t.data.miaosha.times = t.setTimeList(t.data.miaosha.rest_time), t.setData({
                 miaosha: t.data.miaosha
             })) : clearInterval(o);
@@ -507,5 +507,10 @@ Page({
                 number: e
             }
         });
+    },
+    closeLogin: function (){
+        this.setData({
+            user_info_show: !1
+        })
     },
 });

@@ -15,8 +15,8 @@ Page({
             success: function(e) {
                 0 == e.code && ("my" == t.data.__platform && e.data.menus.forEach(function(t, o, a) {
                     "bangding" === t.id && e.data.menus.splice(o, 1, 0);
-                }), t.setData(e.data), getApp().core.setStorageSync(getApp().const.PAGES_USER_USER, e.data), 
-                getApp().core.setStorageSync(getApp().const.SHARE_SETTING, e.data.share_setting), 
+                }), t.setData(e.data), getApp().core.setStorageSync(getApp().const.PAGES_USER_USER, e.data),
+                getApp().core.setStorageSync(getApp().const.SHARE_SETTING, e.data.share_setting),
                 getApp().core.setStorageSync(getApp().const.USER_INFO, e.data.user_info));
             }
         });
@@ -92,5 +92,10 @@ Page({
         }(getApp().permission_list, "integralmall") && getApp().core.navigateTo({
             url: "/pages/integral-mall/index/index"
         });
-    }
+    },
+    closeLogin: function (){
+        this.setData({
+            user_info_show: !1
+        })
+    },
 });
